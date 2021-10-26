@@ -135,7 +135,8 @@ bool MapGenerator::crearObjetosJuego(string _path)
 
 void MapGenerator::transferirObjetosJuego(vector<GameObject*>& _vectorObjetosJuegoDestino)
 {
-	for (int i = 0; i < vectorObjectosJuego.size(); i++) {
+	_vectorObjetosJuegoDestino = vectorObjectosJuego;
+	/*for (int i = 0; i < vectorObjectosJuego.size(); i++) {
 		_vectorObjetosJuegoDestino.push_back(vectorObjectosJuego[i]);
-	}
+	}*/
 }

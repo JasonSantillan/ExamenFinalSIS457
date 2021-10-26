@@ -1,12 +1,13 @@
 #pragma once
 #include "GameObject.h"
+#include "Sprite.h"
 #include "GameDirecctions.h"
 #include "Texture.h"
 #include "Tile.h"
 #include "TilesGraph.h"
 
 
-class GameActor : public GameObject
+class GameActor : public GameObject, public Sprite
 {
 
 protected:
@@ -49,6 +50,7 @@ protected:
 
 	SDL_Rect* colisionador;*/
 
+	std::shared_ptr<Animation> animacion;
 public:
 	// Propiedades
 	static TilesGraph* tilesGraph;
@@ -56,6 +58,7 @@ public:
 	//Constructores & destructores
 	GameActor();
 	GameActor(Texture* _textura, Tile* _tileActual);
+	GameActor(std::shared_ptr<SDL_Texture> _textura, SDL_Renderer* _renderer, Tile* _tileActual);
 	/*
 	GameActor(Texture* _textura);
 	~GameActor();*/
@@ -125,7 +128,9 @@ public:
 
 	//Metodos virtuales, redefinidos o sobrecargados
 	virtual void render();
+	virtual void render(SDL_Rect& _camera);
 	virtual void update() {};
+	virtual void update(const unsigned int delta);
 	virtual void handleEvent(SDL_Event* event) {};
 	virtual void deleteGameObject() {};
 };

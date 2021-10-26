@@ -25,6 +25,14 @@ Bomberman::Bomberman(Texture* _textura, Tile* _tileActual) :GamePawn(_textura, _
 	direccionActual = MOVE_DIRECTION_NONE;
 	direccionSiguiente = MOVE_DIRECTION_NONE;
 
+
+	animacion = std::make_shared<Animation>();
+	animacion->addAnimationEntity(AnimationEntity(0, 0, ancho, alto));
+	animacion->addAnimationEntity(AnimationEntity(ancho * 1, 0, ancho, alto));
+	animacion->addAnimationEntity(AnimationEntity(ancho * 2, 0, ancho, alto));
+	animacion->setSprite(this);
+	addAnimation(animacion);
+	animacion->play();
 }
 
 void Bomberman::update()
@@ -110,6 +118,92 @@ void Bomberman::render()
 {
 	GamePawn::render();
 }
+
+void Bomberman::render(SDL_Rect& _camara) {
+	GamePawn::render(_camara);
+}
+
+void Bomberman::update(const unsigned int _delta) {
+	direccionSiguiente = MOVE_DIRECTION_NONE;
+
+	if (keyboardInput->IsKeyOn(botonAbajo)) {
+		direccionSiguiente = MOVE_DIRECTION_ABAJO;
+	}
+	else if (keyboardInput->IsKeyOn(botonArriba)) {
+		direccionSiguiente = MOVE_DIRECTION_ARRIBA;
+	}
+	else if (keyboardInput->IsKeyOn(botonDerecha)) {
+		direccionSiguiente = MOVE_DIRECTION_DERECHA;
+	}
+	else if (keyboardInput->IsKeyOn(botonIzquierda)) {
+		direccionSiguiente = MOVE_DIRECTION_IZQUIERDA;
+	}
+
+
+	//if (tileActual != nullptr && tileActual->getSueloCesped() != nullptr) {
+	//	//Camina normalmente, se revisan colisiones
+	//}
+
+	// Animar Bomberman
+	//if (enMovimiento) {
+	//	//GameActor::update();
+	//}
+
+	//// Cambiar de direccion y tileSiguiente
+	//if (tileActual != nullptr && tileActual->getSueloCesped() != nullptr) {
+	//	//Camina normalmente, se revisan colisiones
+	//}
+
+	//if (tileSiguiente == tileActual || tileSiguiente == nullptr) {
+	if (direccionSiguiente != direccionActual && tratarDeMover(direccionSiguiente))
+		direccionActual = direccionSiguiente;
+	else
+		tratarDeMover(direccionActual);
+
+	/*if (tileSiguiente == nullptr)
+		enMovimiento = false;
+	else
+		enMovimiento = true;*/
+		//}
+		//else {
+	if (tileSiguiente != nullptr) {
+		switch (direccionActual) {
+		case MOVE_DIRECTION_ARRIBA:
+			posicionY = std::max(posicionY - velocidad, tileSiguiente->getPosicionTileY() * Tile::altoTile);
+			//posicionY = posicionY - velocidad;
+			break;
+		case MOVE_DIRECTION_ABAJO:
+			posicionY = std::min(posicionY + velocidad, tileSiguiente->getPosicionTileY() * Tile::altoTile);
+			//posicionY = posicionY + velocidad;
+			break;
+		case MOVE_DIRECTION_IZQUIERDA:
+			posicionX = std::max(posicionX - velocidad, tileSiguiente->getPosicionTileX() * Tile::anchoTile);
+			//posicionX = posicionX - velocidad;
+			break;
+		case MOVE_DIRECTION_DERECHA:
+			posicionX = std::min(posicionX + velocidad, tileSiguiente->getPosicionTileX() * Tile::anchoTile);
+			//posicionX = posicionX + velocidad;
+			break;
+		}
+
+		// Asignacion de coliciones
+		//
+		//
+
+		// Cambio de direccion
+
+		if ((direccionActual == MOVE_DIRECTION_ABAJO || direccionActual == MOVE_DIRECTION_ARRIBA) && posicionY == tileSiguiente->getPosicionTileY() * Tile::altoTile)
+			setTileActual(tileSiguiente);
+
+		if ((direccionActual == MOVE_DIRECTION_IZQUIERDA || direccionActual == MOVE_DIRECTION_DERECHA) && posicionX == tileSiguiente->getPosicionTileX() * Tile::anchoTile)
+			setTileActual(tileSiguiente);
+	}
+
+	GamePawn::update(_delta);
+}
+
+
+
 void Bomberman::setTileActual(Tile* _tileNuevo)
 {
 	if (tileActual != nullptr){

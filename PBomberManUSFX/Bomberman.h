@@ -16,5 +16,10 @@ public:
 	void update();
 	void render();
 
+	void render(SDL_Rect& _camara);
+	void update(const unsigned int _delta);
+
+
+
 };
 
