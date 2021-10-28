@@ -16,7 +16,6 @@ protected:
 public:
     // Constructores destructor
     GamePawn();
-    GamePawn(Texture* _textura, Tile* _tileActual);
     GamePawn(std::shared_ptr<SDL_Texture> _texture, SDL_Renderer* _renderer, Tile* _tileActual);
     ~GamePawn();
     // Metodos accesores
@@ -30,8 +29,6 @@ public:
 
 
     // Metodos heredados
-    virtual void render();
-    virtual void update();
     virtual void handleEvent(SDL_Event* _event){};
     virtual void render(SDL_Rect& _camara);
     virtual void update(const unsigned int delta);

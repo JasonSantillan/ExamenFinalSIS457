@@ -2,15 +2,16 @@
 
 #include "Sprite.h"
 
-void Animation::addAnimationEntity(AnimationEntity entity)
+void Animation::addAnimationEntity(AnimationEntity _entity)
 {
-    animation.push_back(std::move(entity));
+    animation.push_back(std::move(_entity));
     //animation.push_back(entity);
 }
 
 void Animation::setSprite(Sprite* _sprite)
 {
     this->sprite = _sprite;
+    //sprite = _sprite;
 
     if(!animation.empty())
     {
@@ -20,9 +21,9 @@ void Animation::setSprite(Sprite* _sprite)
     }
 }
 
-void Animation::setAnimationInterval(const unsigned int timeInMs)
+void Animation::setAnimationInterval(const unsigned int _timeInMs)
 {
-    interval = timeInMs;
+    interval = _timeInMs;
 }
 
 void Animation::play()
@@ -46,12 +47,12 @@ void Animation::reset()
     time = 0;
 }
 
-void Animation::update(const unsigned int delta)
+void Animation::update(const unsigned int _delta)
 {
     if(animation.size() < 1 || !sprite || !isPlaying)
         return;
 
-    time += delta;
+    time += _delta;
     if(time >= interval)
     {
         time = 0;

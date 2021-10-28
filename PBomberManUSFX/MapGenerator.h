@@ -10,7 +10,6 @@
 #include "SueloCesped.h"
 #include "Tile.h"
 #include "TilesGraph.h"
-#include "Pila.h"
 
 class MapGenerator
 {
