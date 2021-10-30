@@ -67,7 +67,7 @@ void Bomberman::update(const unsigned int _delta) {
 		else{
 			enMovimiento = true;
 			//if (tileSiguiente != nullptr) {
-			switch (direccionActual) {
+			switch (direccionActual) { 
 			case MOVE_DIRECTION_ARRIBA:
 				setPosition(getPositionX(), std::max(getPositionY() - velocidad, tileSiguiente->getPosicionTileY() * Tile::altoTile));
 				break;
