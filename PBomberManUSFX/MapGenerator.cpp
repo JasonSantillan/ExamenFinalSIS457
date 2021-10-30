@@ -84,16 +84,16 @@ bool MapGenerator::crearObjetosJuego(string _path)
 
 					break;
 				case '1':
-					//objetoNuevo = new MuroMetal(texturaMuroCeramica, tileNuevo);
-					objetoNuevo = new MuroMetal((std::shared_ptr<SDL_Texture>)texturaMuroMetal->getTexturaSDL(), renderer, tileNuevo);
-					break;
-				case '2':
 					//objetoNuevo = new MuroCeramica(texturaMuroMetal, tileNuevo);
 					objetoNuevo = new MuroCeramica((std::shared_ptr<SDL_Texture>)texturaMuroCeramica->getTexturaSDL(), renderer, tileNuevo);
 					break;
 					/*case 'B':
 						objetoNuevo = new Bomberman(texturaBomberman, tileNuevo);
 						break;*/
+				case '2':
+					//objetoNuevo = new MuroMetal(texturaMuroCeramica, tileNuevo);
+					objetoNuevo = new MuroMetal((std::shared_ptr<SDL_Texture>)texturaMuroMetal->getTexturaSDL(), renderer, tileNuevo);
+					break;
 				}
 
 				if (objetoNuevo != nullptr) {

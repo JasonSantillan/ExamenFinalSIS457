@@ -18,7 +18,7 @@ Bomberman::Bomberman(std::shared_ptr<SDL_Texture> _texture, SDL_Renderer* _rende
 		setSize(0, 0);
 	}
 
-	velocidad = 1;
+	velocidad = 3;
 	movil = true;
 	enMovimiento = false;
 	direccionActual = MOVE_DIRECTION_NONE;
@@ -54,61 +54,46 @@ void Bomberman::update(const unsigned int _delta) {
 		direccionSiguiente = MOVE_DIRECTION_IZQUIERDA;
 	}
 
-
-	//if (tileActual != nullptr && tileActual->getSueloCesped() != nullptr) {
-	//	//Camina normalmente, se revisan colisiones
-	//}
-
-	// Animar Bomberman
-	//if (enMovimiento) {
-	//	//GameActor::update();
-	//}
-
-	//// Cambiar de direccion y tileSiguiente
-	//if (tileActual != nullptr && tileActual->getSueloCesped() != nullptr) {
-	//	//Camina normalmente, se revisan colisiones
-	//}
-
-	//if (tileSiguiente == tileActual || tileSiguiente == nullptr) {
-	if (direccionSiguiente != direccionActual && tratarDeMover(direccionSiguiente))
+	
+	if (direccionSiguiente != direccionActual && tratarDeMover(direccionSiguiente)){
 		direccionActual = direccionSiguiente;
-	else
+		enMovimiento = true;
+	}
+	else if(direccionSiguiente != MOVE_DIRECTION_NONE)
 		tratarDeMover(direccionActual);
 
-	/*if (tileSiguiente == nullptr)
-		enMovimiento = false;
-	else
-		enMovimiento = true;*/
-		//}
-		//else {
-	if (tileSiguiente != nullptr) {
-		switch (direccionActual) {
-		case MOVE_DIRECTION_ARRIBA:
-			setPosition(getPositionX(), std::max(getPositionY() - velocidad, tileSiguiente->getPosicionTileY() * Tile::altoTile));
-			break;
-		case MOVE_DIRECTION_ABAJO:
-			setPosition(getPositionX(), std::min(getPositionY() + velocidad, tileSiguiente->getPosicionTileY() * Tile::altoTile));
-			break;
-		case MOVE_DIRECTION_IZQUIERDA:
-			setPosition(std::max(getPositionX() - velocidad, tileSiguiente->getPosicionTileX() * Tile::anchoTile), getPositionY());
-			break;
-		case MOVE_DIRECTION_DERECHA:
-			setPosition(std::min(getPositionX() + velocidad, tileSiguiente->getPosicionTileX() * Tile::anchoTile), getPositionY());
-			break;
+		if (tileSiguiente == nullptr)
+			enMovimiento = false;
+		else{
+			enMovimiento = true;
+			//if (tileSiguiente != nullptr) {
+			switch (direccionActual) {
+			case MOVE_DIRECTION_ARRIBA:
+				setPosition(getPositionX(), std::max(getPositionY() - velocidad, tileSiguiente->getPosicionTileY() * Tile::altoTile));
+				break;
+			case MOVE_DIRECTION_ABAJO:
+				setPosition(getPositionX(), std::min(getPositionY() + velocidad, tileSiguiente->getPosicionTileY() * Tile::altoTile));
+				break;
+			case MOVE_DIRECTION_IZQUIERDA:
+				setPosition(std::max(getPositionX() - velocidad, tileSiguiente->getPosicionTileX() * Tile::anchoTile), getPositionY());
+				break;
+			case MOVE_DIRECTION_DERECHA:
+				setPosition(std::min(getPositionX() + velocidad, tileSiguiente->getPosicionTileX() * Tile::anchoTile), getPositionY());
+				break;
+			}
+
+			// Asignacion de coliciones
+			//
+			//
+
+			// Cambio de direccion
+
+			if ((direccionActual == MOVE_DIRECTION_ABAJO || direccionActual == MOVE_DIRECTION_ARRIBA) && getPositionY() == tileSiguiente->getPosicionTileY() * Tile::altoTile)
+				setTileActual(tileSiguiente);
+
+			if ((direccionActual == MOVE_DIRECTION_IZQUIERDA || direccionActual == MOVE_DIRECTION_DERECHA) && getPositionX() == tileSiguiente->getPosicionTileX() * Tile::anchoTile)
+				setTileActual(tileSiguiente);
 		}
-
-		// Asignacion de coliciones
-		//
-		//
-
-		// Cambio de direccion
-
-		if ((direccionActual == MOVE_DIRECTION_ABAJO || direccionActual == MOVE_DIRECTION_ARRIBA) && getPositionY() == tileSiguiente->getPosicionTileY() * Tile::altoTile)
-			setTileActual(tileSiguiente);
-
-		if ((direccionActual == MOVE_DIRECTION_IZQUIERDA || direccionActual == MOVE_DIRECTION_DERECHA) && getPositionX() == tileSiguiente->getPosicionTileX() * Tile::anchoTile)
-			setTileActual(tileSiguiente);
-	}
 
 	GamePawn::update(_delta);
 }

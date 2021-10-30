@@ -14,7 +14,7 @@ GameActor::GameActor() :GameObject() , Sprite(nullptr, nullptr){
 
 	velocidad = 1;
 	energia = 100;
-	vidas = 3;
+	vidas = 5;
 
 	tileActual = nullptr;
 	tileSiguiente = nullptr;
