@@ -4,6 +4,7 @@
 #include "../Entities/GameActor.h"
 
 #include "../Core/Animation.h"
+#include "../system/KeyboardInput.h"
 
 /**
     * @brief Enumeration of movement directions
@@ -24,6 +25,9 @@ enum class MovementDirection
 class Player : public GameActor
 {
     public:
+
+        KeyboardInput* keyboardInputp;
+
     /**
         * @brief Create player
         *

@@ -16,6 +16,10 @@ Player::Player(std::shared_ptr<SDL_Texture> _texture, SDL_Renderer* _renderer)
     movement->addAnimationEntity(AnimationEntity(tileSize * 7, 0, tileSize, tileSize));
     movement->setSprite(this);
     addAnimation(movement);
+
+    keyboardInputp = KeyboardInput::Instance();
+    std::cout << keyboardInputp << std::endl;
+
 }
 
 void Player::setMovementDirection(MovementDirection direction)

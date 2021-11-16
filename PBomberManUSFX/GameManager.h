@@ -6,6 +6,7 @@
 
 #include "./Managers/AssetManager.h"
 #include "./Managers/SceneManager.h"
+#include "./system/KeyboardInput.h"
 
 
 class GameManager
@@ -27,6 +28,7 @@ class GameManager
     Uint32 lastTickTime = 0; // last time for delta calculation
 
 public:
+    KeyboardInput* keyboardInput;
     /**
         * @brief Create GameManager
         *

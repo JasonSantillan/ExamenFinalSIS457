@@ -12,7 +12,8 @@
 GameManager::GameManager(const std::string _windowName, const int width, const int height)
     : windowWidth(width), windowHeight(height), windowName(_windowName)
 {
-    
+    keyboardInput = KeyboardInput::Instance();
+    std::cout << keyboardInput << std::endl;
 }
 
 GameManager::~GameManager()

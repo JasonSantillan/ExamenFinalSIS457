@@ -161,6 +161,7 @@
     <ClCompile Include="Scenes\MenuScene.cpp" />
     <ClCompile Include="Scenes\Scene.cpp" />
     <ClCompile Include="Scenes\StageScene.cpp" />
+    <ClCompile Include="system\KeyboardInput.cpp" />
     <ClCompile Include="Util\Pathfinding.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +184,7 @@
     <ClInclude Include="Scenes\MenuScene.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\StageScene.h" />
+    <ClInclude Include="system\KeyboardInput.h" />
     <ClInclude Include="Util\Pathfinding.h" />
   </ItemGroup>
   <ItemGroup>
