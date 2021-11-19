@@ -223,7 +223,7 @@ void LevelScene::generateEnemies()
         int textureRand = randTexture();
         spawnEnemy(textureRand == 0 ? Texture::Enemy1 :
                                         (textureRand == 1 ? Texture::Enemy2 : Texture::Enemy3),
-                    randType() == 0 ? AIType::Wandering : AIType::Chasing,
+                    randType() == 0 ? AIType::wandering : AIType::chasing,
                     fieldPositionX + cellY * scaledTileSize, fieldPositionY + cellX * scaledTileSize);
     }
 }
