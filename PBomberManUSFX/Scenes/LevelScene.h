@@ -18,6 +18,7 @@
 #include "../Scenes/Scene.h"
 #include "../Factories/Factory.h"
 #include "../Factories/FactoryGameClasico.h"
+#include "../Factories/FactoryGameCartoon.h"
 #include "../Entities/ClasicoPlayer.h"
 
 /**
