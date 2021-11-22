@@ -6,8 +6,7 @@
 class Factory
 {
 public:
-	virtual std::shared_ptr<GameObject> CreatePlayer() = 0;
-	//virtual GameObject* CreateEnemy() = 0;
-	virtual std::shared_ptr<GameObject> CreateEnemy(Texture texture, AIType type, const int positionX, const int positionY, const int scaledTileSize) = 0;
+	virtual std::shared_ptr<GameObject> CreatePlayer(const int _positionX, const int _positionY) = 0;
+	virtual std::shared_ptr<GameObject> CreateEnemy(AIType _type, const int _positionX, const int _positionY) = 0;
 };
 

@@ -5,10 +5,10 @@ FactoryGameClasico::FactoryGameClasico() {
     scaledTileSize = 32;
 }
 
-std::shared_ptr<GameObject> FactoryGameClasico::CreatePlayer(Texture _texture, const int _positionX, const int _positionY)
+std::shared_ptr<GameObject> FactoryGameClasico::CreatePlayer(const int _positionX, const int _positionY)
 {
     // spawn player
-    auto player = std::make_shared<ClasicoPlayer>(gameManager->getAssetManager()->getTexture(_texture), gameManager->getRenderer());
+    auto player = std::make_shared<ClasicoPlayer>(gameManager->getAssetManager()->getTexture(Texture::Player), gameManager->getRenderer());
     player->setPosition(_positionX, _positionY);
     player->setSize(scaledTileSize, scaledTileSize);
     player->setClip(tileSize, tileSize, tileSize * 4, 0);
@@ -17,10 +17,10 @@ std::shared_ptr<GameObject> FactoryGameClasico::CreatePlayer(Texture _texture, c
 }
 
 
-std::shared_ptr<GameObject> FactoryGameClasico::CreateEnemy(Texture _texture, AIType _type, const int _positionX, const int _positionY) 
+std::shared_ptr<GameObject> FactoryGameClasico::CreateEnemy(AIType _type, const int _positionX, const int _positionY)
 {
     //shared_ptr<GameObject> enemy(nullptr);
-    auto enemy = std::make_shared<ClasicoEnemy>(gameManager->getAssetManager()->getTexture(_texture), gameManager->getRenderer());
+    auto enemy = std::make_shared<ClasicoEnemy>(gameManager->getAssetManager()->getTexture(Texture::Enemy1), gameManager->getRenderer());
     enemy->setPosition(_positionX, _positionY);
     enemy->setSize(scaledTileSize, scaledTileSize);
     enemy->setAIType(_type);

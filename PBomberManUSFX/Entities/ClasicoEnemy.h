@@ -1,5 +1,7 @@
 #pragma once
 #include "Enemy.h"
+#include "../GameTextures.h"
+
 class ClasicoEnemy :
     public Enemy
 {

@@ -20,6 +20,8 @@
 #include "../Managers/AssetManager.h"
 #include "../GameAITypes.h"
 #include "../GameTextures.h"
+#include "../Factories/Factory.h"
+
 
 class FactoryGameClasico :
     public Factory
@@ -31,7 +33,8 @@ private:
 public:
     FactoryGameClasico();
 
-    std::shared_ptr<GameObject> CreatePlayer(Texture _texture, const int _positionX, const int _positionY);
-    std::shared_ptr<GameObject> CreateEnemy(Texture _texture, AIType __type, const int _positionX, const int positionY);
+    std::shared_ptr<GameObject> CreatePlayer(const int _positionX, const int _positionY);
+    std::shared_ptr<GameObject> CreateEnemy(AIType _type, const int _positionX, const int _positionY);
+    
 };
 

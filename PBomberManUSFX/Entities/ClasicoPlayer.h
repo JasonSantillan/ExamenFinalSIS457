@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.h"
+#include "../GameTextures.h"
 class ClasicoPlayer :
     public Player
 {
