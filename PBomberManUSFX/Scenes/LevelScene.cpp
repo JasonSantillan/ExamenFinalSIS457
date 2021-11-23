@@ -14,7 +14,7 @@
 LevelScene::LevelScene(GameManager* _gameManager, const unsigned int _stage, const unsigned int prevScore)
     : Scene(_gameManager), score(prevScore), stage(_stage)
 {
-    int factoryGameType = 0;
+    int factoryGameType = 1;
 
     if (factoryGameType == 0) {
         factory = new FactoryGameCartoon();

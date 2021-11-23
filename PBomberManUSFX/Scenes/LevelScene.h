@@ -52,7 +52,6 @@ public:
 
 private:
     
-
     // spawn and generation of map objects
     void spawnTextObjects();
     void generateTileMap();

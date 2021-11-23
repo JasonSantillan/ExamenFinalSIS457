@@ -114,7 +114,13 @@
     <ClCompile Include="Entities\ClasicoPlayer.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="patrones\Patrones Creacionales\builder_01.cpp">
+    <ClCompile Include="Entities\Muro.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Entities\MuroPiedra.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -225,6 +231,12 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Entities\ClasicoPlayer.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\Muro.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\MuroPiedra.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

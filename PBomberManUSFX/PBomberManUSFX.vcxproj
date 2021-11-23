@@ -166,9 +166,11 @@
     <ClCompile Include="Factories\FactoryGamePersonalizado.cpp" />
     <ClCompile Include="Factories\FactoryGameRealista.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Managers\AssetManager.cpp" />
     <ClCompile Include="Managers\SceneManager.cpp" />
-    <ClCompile Include="patrones\Patrones Creacionales\builder_01.cpp" />
+    <ClCompile Include="Entities\Muro.cpp" />
+    <ClCompile Include="Entities\MuroPiedra.cpp" />
     <ClCompile Include="Scenes\GameOverScene.cpp" />
     <ClCompile Include="Scenes\LevelScene.cpp" />
     <ClCompile Include="Scenes\MenuScene.cpp" />
@@ -207,6 +209,8 @@
     <ClInclude Include="GameTextures.h" />
     <ClInclude Include="Managers\AssetManager.h" />
     <ClInclude Include="Managers\SceneManager.h" />
+    <ClInclude Include="Entities\Muro.h" />
+    <ClInclude Include="Entities\MuroPiedra.h" />
     <ClInclude Include="Scenes\GameOverScene.h" />
     <ClInclude Include="Scenes\LevelScene.h" />
     <ClInclude Include="Scenes\MenuScene.h" />

@@ -16,7 +16,6 @@ std::shared_ptr<GameObject> FactoryGameCartoon::CreatePlayer(const int _position
     return dynamic_pointer_cast<GameObject>(player);
 }
 
-
 std::shared_ptr<GameObject> FactoryGameCartoon::CreateEnemy(AIType _type, const int _positionX, const int _positionY)
 {
     //shared_ptr<GameObject> enemy(nullptr);
@@ -27,3 +26,4 @@ std::shared_ptr<GameObject> FactoryGameCartoon::CreateEnemy(AIType _type, const 
 
     return dynamic_pointer_cast<GameObject>(enemy);
 }
+
