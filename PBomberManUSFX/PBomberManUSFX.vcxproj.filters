@@ -75,9 +75,6 @@
     <ClCompile Include="system\KeyboardInput.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="Entities\CartoonEnemy.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -115,6 +112,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="Entities\ClasicoPlayer.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="patrones\Patrones Creacionales\builder_01.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

@@ -166,9 +166,9 @@
     <ClCompile Include="Factories\FactoryGamePersonalizado.cpp" />
     <ClCompile Include="Factories\FactoryGameRealista.cpp" />
     <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="Managers\AssetManager.cpp" />
     <ClCompile Include="Managers\SceneManager.cpp" />
+    <ClCompile Include="patrones\Patrones Creacionales\builder_01.cpp" />
     <ClCompile Include="Scenes\GameOverScene.cpp" />
     <ClCompile Include="Scenes\LevelScene.cpp" />
     <ClCompile Include="Scenes\MenuScene.cpp" />
