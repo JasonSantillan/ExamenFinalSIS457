@@ -20,6 +20,7 @@
 #include "../Factories/FactoryGameClasico.h"
 #include "../Factories/FactoryGameCartoon.h"
 #include "../Entities/ClasicoPlayer.h"
+#include "../GameVersions.h"
 
 /**
     * @brief Level Scene
@@ -36,7 +37,9 @@ public:
         * @param game - game pointer
         * @param stage - stage number
         */
-    LevelScene(GameManager* game, const unsigned int stage, const unsigned int prevScore);
+    LevelScene(GameManager* game, const unsigned int _stage, const unsigned int _prevScore);
+    LevelScene(GameManager* game, GameVersion _gameVersion, const unsigned int _stage, const unsigned int _prevScore);
+    
     /**
         * @brief Catch SDL2 events
         *
@@ -146,6 +149,7 @@ private:
     bool isPaused = false;
     bool isWin = false;
     // variables
+    unsigned int gameVersion = GAMEVERSION_CLASIC;
     unsigned int score = 0;
     unsigned int stage = 0;
 

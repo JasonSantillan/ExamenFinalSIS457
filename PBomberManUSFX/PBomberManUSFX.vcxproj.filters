@@ -239,6 +239,9 @@
     <ClInclude Include="Entities\MuroPiedra.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="GameVersions.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\bomber.bmp">

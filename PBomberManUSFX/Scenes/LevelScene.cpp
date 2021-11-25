@@ -51,6 +51,52 @@ LevelScene::LevelScene(GameManager* _gameManager, const unsigned int _stage, con
     updateLevelTimer();
 }
 
+LevelScene::LevelScene(GameManager* _gameManager, GameVersion _gameVersion, const unsigned int _stage, const unsigned int prevScore)
+    : Scene(_gameManager), gameVersion(_gameVersion), score(prevScore), stage(_stage)
+{
+    
+    if (gameVersion == GameVersion::GAMEVERSION_CARTOON) {
+        factory = new FactoryGameCartoon();
+    }
+    else if (gameVersion == GameVersion::GAMEVERSION_CLASIC) {
+        factory = new FactoryGameClasico();
+    }
+    /*else if (gameVersion == GameVersion::GAMEVERSION_CUSTOM) {
+        factory = FactoryGameCustom();
+    }
+    else {
+        factory = FactoryGameRealo();
+    }*/
+
+    // common field parameters
+    fieldPositionX = 0;
+    fieldPositionY = gameManager->getWindowHeight() / 15;
+    const float scale = (gameManager->getWindowHeight() - fieldPositionY) / static_cast<float>(tileArrayHeight * tileSize);
+    scaledTileSize = static_cast<int>(round(scale * tileSize));
+    // menu music
+    menuMusic = std::make_shared<Music>(gameManager->getAssetManager()->getMusic(MusicEnum::Level));
+    menuMusic->play();
+    // sounds
+    gameoverSound = std::make_shared<Sound>(gameManager->getAssetManager()->getSound(SoundEnum::Lose));
+    winSound = std::make_shared<Sound>(gameManager->getAssetManager()->getSound(SoundEnum::Win));
+    explosionSound = std::make_shared<Sound>(gameManager->getAssetManager()->getSound(SoundEnum::Explosion));
+    // render text
+    spawnTextObjects();
+    // generate tile map
+    //generateTileMap();
+    // 
+    crearObjetosJuego("resources/level1.txt");
+    // prepare player
+    spawnPlayer(fieldPositionX + playerStartX * scaledTileSize,
+        fieldPositionY + playerStartY * scaledTileSize);
+    // generate enemies
+    generateEnemies();
+    // set timer
+    updateLevelTimer();
+}
+
+
+
 void LevelScene::spawnTextObjects()
 {
     const int fontWidth = static_cast<int>(gameManager->getWindowWidth() / 32.0f);

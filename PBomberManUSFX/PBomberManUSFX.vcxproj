@@ -207,6 +207,7 @@
     <ClInclude Include="GameAITypes.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameTextures.h" />
+    <ClInclude Include="GameVersions.h" />
     <ClInclude Include="Managers\AssetManager.h" />
     <ClInclude Include="Managers\SceneManager.h" />
     <ClInclude Include="Entities\Muro.h" />
