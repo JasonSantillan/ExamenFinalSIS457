@@ -5,7 +5,7 @@
 
 void AssetManager::load(SDL_Renderer* renderer)
 {
-    // load font
+        // load font
     loadFont();
     // load textures
     loadTexture(renderer, Texture::MenuBack, "assets/menu_title.png");

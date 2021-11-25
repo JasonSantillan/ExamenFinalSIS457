@@ -142,6 +142,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Builder\Builder.cpp" />
+    <ClCompile Include="Builder\Director.cpp" />
     <ClCompile Include="Entities\ClasicoEnemy.cpp" />
     <ClCompile Include="Entities\ClasicoPlayer.cpp" />
     <ClCompile Include="Core\Animation.cpp" />
@@ -180,6 +182,8 @@
     <ClCompile Include="Util\Pathfinding.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Builder\Builder.h" />
+    <ClInclude Include="Builder\Director.h" />
     <ClInclude Include="Entities\ClasicoEnemy.h" />
     <ClInclude Include="Entities\ClasicoPlayer.h" />
     <ClInclude Include="Const.h" />

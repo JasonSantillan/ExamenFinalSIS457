@@ -9,6 +9,7 @@
 #include <unordered_map>
 
 #include "../GameTextures.h"
+#include "../GameVersions.h"
 /**
     * @brief Enumeration for Texture
     *
@@ -74,6 +75,7 @@ class AssetManager
         * @param renderer - SDL2 Renderer
         */
     void load(SDL_Renderer* renderer);
+    
     /**
         * @brief Get font
         *
