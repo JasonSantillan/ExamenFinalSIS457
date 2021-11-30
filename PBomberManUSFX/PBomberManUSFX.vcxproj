@@ -142,6 +142,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Builder\BuilderClasico.cpp" />
+    <ClCompile Include="Builder\BuilderCartoon.cpp" />
     <ClCompile Include="Builder\Builder.cpp" />
     <ClCompile Include="Builder\Director.cpp" />
     <ClCompile Include="Entities\ClasicoEnemy.cpp" />
@@ -167,6 +169,7 @@
     <ClCompile Include="Factories\FactoryGameClasico.cpp" />
     <ClCompile Include="Factories\FactoryGamePersonalizado.cpp" />
     <ClCompile Include="Factories\FactoryGameRealista.cpp" />
+    <ClCompile Include="Scenes\GameLevelScene.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Managers\AssetManager.cpp" />
@@ -178,10 +181,14 @@
     <ClCompile Include="Scenes\MenuScene.cpp" />
     <ClCompile Include="Scenes\Scene.cpp" />
     <ClCompile Include="Scenes\StageScene.cpp" />
+    <ClCompile Include="Entities\Soil.cpp" />
     <ClCompile Include="system\KeyboardInput.cpp" />
     <ClCompile Include="Util\Pathfinding.cpp" />
+    <ClCompile Include="Entities\Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Builder\BuilderClasico.h" />
+    <ClInclude Include="Builder\BuilderCartoon.h" />
     <ClInclude Include="Builder\Builder.h" />
     <ClInclude Include="Builder\Director.h" />
     <ClInclude Include="Entities\ClasicoEnemy.h" />
@@ -209,6 +216,7 @@
     <ClInclude Include="Factories\FactoryGamePersonalizado.h" />
     <ClInclude Include="Factories\FactoryGameRealista.h" />
     <ClInclude Include="GameAITypes.h" />
+    <ClInclude Include="Scenes\GameLevelScene.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameTextures.h" />
     <ClInclude Include="GameVersions.h" />
@@ -221,8 +229,10 @@
     <ClInclude Include="Scenes\MenuScene.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\StageScene.h" />
+    <ClInclude Include="Entities\Soil.h" />
     <ClInclude Include="system\KeyboardInput.h" />
     <ClInclude Include="Util\Pathfinding.h" />
+    <ClInclude Include="Entities\Wall.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\bomber.bmp" />

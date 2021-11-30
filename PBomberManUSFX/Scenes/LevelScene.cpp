@@ -14,16 +14,7 @@
 LevelScene::LevelScene(GameManager* _gameManager, const unsigned int _stage, const unsigned int prevScore)
     : Scene(_gameManager), score(prevScore), stage(_stage)
 {
-    int factoryGameType = 1;
-
-    if (factoryGameType == 0) {
-        factory = new FactoryGameCartoon();
-    }
-    else if(factoryGameType == 1) {
-        factory = new FactoryGameClasico();
-    }
     
-
     // common field parameters
     fieldPositionX = 0;
     fieldPositionY = gameManager->getWindowHeight() / 15;

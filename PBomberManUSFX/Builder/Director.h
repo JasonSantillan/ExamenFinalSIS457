@@ -1,6 +1,14 @@
 #pragma once
+#include <SDL.h>
+#include <memory>
+#include <utility>
+#include <vector>
+#include <iostream>
+#include <fstream>
+#include <string>
+
 #include "../Builder/Builder.h"
-#include "../Scenes/LevelScene.h"
+#include "../Scenes/GameLevelScene.h"
 
 class Director
 {
@@ -13,19 +21,6 @@ public:
 		builder = _newBuilder;
 	}
 
-	LevelScene* getLevelScene()
-	{
-		/*Auto* Coche = new Auto();
-
-		Coche->Carroceria = builder->getCarroceria();
-		Coche->Motor = builder->getMotor();
-		Coche->Neumaticos[0] = builder->getNeumatico();
-		Coche->Neumaticos[1] = builder->getNeumatico();
-		Coche->Neumaticos[2] = builder->getNeumatico();
-		Coche->Neumaticos[3] = builder->getNeumatico();
-
-		return Coche;*/
-		return nullptr;
-	}
+	std::shared_ptr<GameLevelScene> getGameLevelScene(GameManager* _gameManager, const unsigned int _stage, const unsigned int _prevScore);
 };
 
