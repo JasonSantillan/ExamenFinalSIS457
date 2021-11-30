@@ -188,6 +188,7 @@
     <ClCompile Include="Entities\Soil.cpp" />
     <ClCompile Include="system\KeyboardInput.cpp" />
     <ClCompile Include="Util\Pathfinding.cpp" />
+    <ClCompile Include="Adapters\WallAdapter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Adapters\Texture.h" />
@@ -239,6 +240,7 @@
     <ClInclude Include="Entities\Soil.h" />
     <ClInclude Include="system\KeyboardInput.h" />
     <ClInclude Include="Util\Pathfinding.h" />
+    <ClInclude Include="Adapters\WallAdapter.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\bomber.bmp" />
