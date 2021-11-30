@@ -53,9 +53,9 @@ public:
     std::shared_ptr<Sprite> bomb = nullptr;                           // player's bomb
     std::shared_ptr<Sprite> door = nullptr;                           // door for level finish
     std::vector<std::shared_ptr<Enemy>> enemies;                      // enemies
-    std::vector<std::pair<Tile, std::shared_ptr<GameGraphicObject>>> collisions; // collisions
+    std::vector<std::pair<GameTile, std::shared_ptr<GameGraphicObject>>> collisions; // collisions
     std::vector<std::shared_ptr<GameGraphicObject>> bangs;                       // bomb's bang
-    Tile tiles[tileArrayHeight][tileArrayWidth];                      // tilemap
+    GameTile tiles[tileArrayHeight][tileArrayWidth];                      // tilemap
 
 
     int playerDirectionX = 0; // direction used for control

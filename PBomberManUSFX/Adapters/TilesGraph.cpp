@@ -95,11 +95,11 @@ Bomberman* TilesGraph::getBomberman()
         }
     }*/
 
-    for (auto itg = vTilesGraph.begin(); itg != vTilesGraph.end(); ++itg) {
+  /*  for (auto itg = vTilesGraph.begin(); itg != vTilesGraph.end(); ++itg) {
         if ((*itg)->getBomberman() != nullptr) {
             return (*itg)->getBomberman();
         }
-    }
+    }*/
 
     return nullptr;
 }

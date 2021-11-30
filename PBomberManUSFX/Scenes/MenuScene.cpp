@@ -46,7 +46,7 @@ MenuItem operator--(MenuItem& c, int)
 MenuScene::MenuScene(GameManager* _gameManager) : Scene(_gameManager)
 {
     // background
-    auto background = std::make_shared<Sprite>(gameManager->getAssetManager()->getTexture(Texture::MenuBack), gameManager->getRenderer());
+    auto background = std::make_shared<Sprite>(gameManager->getAssetManager()->getTexture(GameTexture::MenuBack), gameManager->getRenderer());
     
     background->setPosition(30, 20);
     

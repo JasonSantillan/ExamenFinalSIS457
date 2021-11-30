@@ -142,6 +142,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Adapters\Texture.cpp" />
+    <ClCompile Include="Adapters\Tile.cpp" />
+    <ClCompile Include="Adapters\TilesGraph.cpp" />
+    <ClCompile Include="Adapters\Wall.cpp" />
     <ClCompile Include="Builder\BuilderClasico.cpp" />
     <ClCompile Include="Builder\BuilderCartoon.cpp" />
     <ClCompile Include="Builder\Builder.cpp" />
@@ -184,9 +188,12 @@
     <ClCompile Include="Entities\Soil.cpp" />
     <ClCompile Include="system\KeyboardInput.cpp" />
     <ClCompile Include="Util\Pathfinding.cpp" />
-    <ClCompile Include="Entities\Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Adapters\Texture.h" />
+    <ClInclude Include="Adapters\Tile.h" />
+    <ClInclude Include="Adapters\TilesGraph.h" />
+    <ClInclude Include="Adapters\Wall.h" />
     <ClInclude Include="Builder\BuilderClasico.h" />
     <ClInclude Include="Builder\BuilderCartoon.h" />
     <ClInclude Include="Builder\Builder.h" />
@@ -232,7 +239,6 @@
     <ClInclude Include="Entities\Soil.h" />
     <ClInclude Include="system\KeyboardInput.h" />
     <ClInclude Include="Util\Pathfinding.h" />
-    <ClInclude Include="Entities\Wall.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\bomber.bmp" />

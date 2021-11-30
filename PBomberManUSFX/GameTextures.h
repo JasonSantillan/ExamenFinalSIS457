@@ -1,6 +1,6 @@
 #pragma once
 
-enum class Texture : int
+enum class GameTexture : int
 {
     MenuBack,
     Metal,
