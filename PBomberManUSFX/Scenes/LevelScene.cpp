@@ -5,6 +5,12 @@
 #include <string>
 
 #include "../Entities/Sprite.h"
+#include "../Entities/WallBrick.h"
+#include "../Entities/WallMetal.h"
+#include "../Entities/WallStone.h"
+#include "../Entities/SoilGrass.h"
+#include "../Adapters/WallPacmanAdapter.h"
+
 #include "../GameManager.h"
 #include "../Scenes/GameOverScene.h"
 #include "../Scenes/LevelScene.h"
@@ -32,6 +38,8 @@ LevelScene::LevelScene(GameManager* _gameManager, const unsigned int _stage, con
     // generate tile map
     //generateTileMap();
     // 
+    
+    tileGraph = new TileGraph(30, 30);
     crearObjetosJuego("resources/level1.txt");
     // prepare player
     spawnPlayer(fieldPositionX + playerStartX * scaledTileSize,
@@ -76,6 +84,7 @@ LevelScene::LevelScene(GameManager* _gameManager, GameVersion _gameVersion, cons
     // generate tile map
     //generateTileMap();
     // 
+    tileGraph = new TileGraph(30, 30);
     crearObjetosJuego("resources/level1.txt");
     // prepare player
     spawnPlayer(fieldPositionX + playerStartX * scaledTileSize,
@@ -169,28 +178,17 @@ void LevelScene::generateTileMap()
             // spawn stone
             if(tiles[i][j] == GameTile::Stone)
             {
-                //spawnStone(fieldPositionX + j * scaledTileSize, fieldPositionY + i * scaledTileSize);
-                spawnWall(fieldPositionX + j * scaledTileSize, fieldPositionY + i * scaledTileSize);
+                spawnStone(fieldPositionX + j * scaledTileSize, fieldPositionY + i * scaledTileSize);
+                //spawnWallPacman(fieldPositionX + j * scaledTileSize, fieldPositionY + i * scaledTileSize);
                 //spawnMetal(fieldPositionX + j * scaledTileSize, fieldPositionY + i * scaledTileSize);
             }
         }
     }
 }
 
-void LevelScene::spawnMetal(const int positionX, const int positionY)
-{
-    auto metal = std::make_shared<Sprite>(gameManager->getAssetManager()->getTexture(GameTexture::Metal),
-        gameManager->getRenderer());
-    metal->setPosition(positionX, positionY);
-    metal->setSize(scaledTileSize, scaledTileSize);
-    addObject(metal);
-    backgroundObjectLastNumber++;
-}
-
-
 void LevelScene::spawnGrass(const int positionX, const int positionY)
 {
-    auto grass = std::make_shared<Sprite>(gameManager->getAssetManager()->getTexture(GameTexture::Grass),
+    auto grass = std::make_shared<SoilGrass>(gameManager->getAssetManager()->getTexture(GameTexture::Grass),
                                             gameManager->getRenderer());
     grass->setPosition(positionX, positionY);
     grass->setSize(scaledTileSize, scaledTileSize);
@@ -198,10 +196,20 @@ void LevelScene::spawnGrass(const int positionX, const int positionY)
     backgroundObjectLastNumber++;
 }
 
+void LevelScene::spawnMetal(const int positionX, const int positionY)
+{
+    auto metal = std::make_shared<WallMetal>(gameManager->getAssetManager()->getTexture(GameTexture::Metal),
+        gameManager->getRenderer());
+    metal->setPosition(positionX, positionY);
+    metal->setSize(scaledTileSize, scaledTileSize);
+    addObject(metal);
+    backgroundObjectLastNumber++;
+}
+
 void LevelScene::spawnBrick(const int positionX, const int positionY)
 {
-    auto brick = std::make_shared<Sprite>(gameManager->getAssetManager()->getTexture(GameTexture::Brick),
-                                            gameManager->getRenderer());
+    //auto brick = std::make_shared<Sprite>(gameManager->getAssetManager()->getTexture(GameTexture::Brick), gameManager->getRenderer());
+    auto brick = std::make_shared<WallBrick>(gameManager->getAssetManager()->getTexture(GameTexture::Brick), gameManager->getRenderer());
     brick->setPosition(positionX, positionY);
     brick->setSize(scaledTileSize, scaledTileSize);
     addObject(brick);
@@ -210,7 +218,7 @@ void LevelScene::spawnBrick(const int positionX, const int positionY)
 
 void LevelScene::spawnStone(const int positionX, const int positionY)
 {
-    auto stone = std::make_shared<Sprite>(gameManager->getAssetManager()->getTexture(GameTexture::Stone),
+    auto stone = std::make_shared<WallStone>(gameManager->getAssetManager()->getTexture(GameTexture::Stone),
                                             gameManager->getRenderer());
     stone->setPosition(positionX, positionY);
     stone->setSize(scaledTileSize, scaledTileSize);
@@ -219,15 +227,13 @@ void LevelScene::spawnStone(const int positionX, const int positionY)
     backgroundObjectLastNumber++;
 }
 
-void LevelScene::spawnWall(const int positionX, const int positionY)
+void LevelScene::spawnWallPacman(const int positionX, const int positionY, Tile* _tile)
 {
-    //auto wall = std::make_shared<Wall>(gameManager->getAssetManager()->getTexture(GameTexture::Stone), gameManager->getRenderer());
-    //
-    ////wall->setPosition(positionX, positionY);
-    ////wall->setSize(scaledTileSize, scaledTileSize);
-    //addObject(wall);
-    //collisions.push_back(std::make_pair(GameTile::Wall, wall));
-    //backgroundObjectLastNumber++;
+    auto wallPacman = std::make_shared<WallPacmanAdapter>(gameManager->getAssetManager()->getTexture(GameTexture::WallPacman), gameManager->getRenderer(), _tile);
+    wallPacman->setPosition(positionX, positionY);
+    wallPacman->setSize(scaledTileSize, scaledTileSize);
+    addObject(wallPacman);
+    backgroundObjectLastNumber++;
 }
 
 
@@ -982,7 +988,7 @@ bool LevelScene::crearObjetosJuego(string _path)
     //texturaSueloCesped->loadFromImage("resources/suelo_cesped.jpg");
     //
     int x = 0;
-    int y = 1;
+    int y = 0;
     //int bombermanPosicionX = -1;
     //int bombermanPosicionY = -1;
     //int bomberwomanPosicionX = -1;
@@ -995,7 +1001,8 @@ bool LevelScene::crearObjetosJuego(string _path)
     	for (int i = 0; i < chars.size(); i++) {
     		if (chars[i] != ' ') {
     //			GameObject* objetoNuevo = nullptr;
-    //			GameTile* tileNuevo = tilesGraph->getTileEn(x, y);
+    			Tile* tile = tileGraph->GetTileAt(x, y);
+                
     			switch (chars[i]) {
     			case '0':
                     spawnGrass(x * scaledTileSize, y * scaledTileSize);
@@ -1026,7 +1033,7 @@ bool LevelScene::crearObjetosJuego(string _path)
                     break;
     			case '2':
                     spawnStone(x * scaledTileSize, y * scaledTileSize);
-                    
+                    //spawnWallPacman(x * scaledTileSize, y * scaledTileSize, tile);
     //              //objetoNuevo = new MuroMetal(texturaMuroCeramica, tileNuevo);
     				//objetoNuevo = new MuroMetal((std::shared_ptr<SDL_Texture>)texturaMuroMetal->getTexturaSDL(), renderer, tileNuevo);
     				break;

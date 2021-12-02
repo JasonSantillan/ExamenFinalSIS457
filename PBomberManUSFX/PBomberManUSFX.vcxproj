@@ -142,10 +142,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Adapters\GameObjectPacman.cpp" />
     <ClCompile Include="Adapters\Texture.cpp" />
     <ClCompile Include="Adapters\Tile.cpp" />
-    <ClCompile Include="Adapters\TilesGraph.cpp" />
-    <ClCompile Include="Adapters\Wall.cpp" />
+    <ClCompile Include="Adapters\TileGraph.cpp" />
+    <ClCompile Include="Adapters\WallPacman.cpp" />
+    <ClCompile Include="Adapters\WallPacmanAdapter.cpp" />
     <ClCompile Include="Builder\BuilderClasico.cpp" />
     <ClCompile Include="Builder\BuilderCartoon.cpp" />
     <ClCompile Include="Builder\Builder.cpp" />
@@ -186,15 +188,21 @@
     <ClCompile Include="Scenes\Scene.cpp" />
     <ClCompile Include="Scenes\StageScene.cpp" />
     <ClCompile Include="Entities\Soil.cpp" />
+    <ClCompile Include="Entities\SoilGrass.cpp" />
     <ClCompile Include="system\KeyboardInput.cpp" />
     <ClCompile Include="Util\Pathfinding.cpp" />
-    <ClCompile Include="Adapters\WallAdapter.cpp" />
+    <ClCompile Include="Entities\Wall.cpp" />
+    <ClCompile Include="Entities\WallMetal.cpp" />
+    <ClCompile Include="Entities\WallBrick.cpp" />
+    <ClCompile Include="Entities\WallStone.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Adapters\GameObjectPacman.h" />
     <ClInclude Include="Adapters\Texture.h" />
     <ClInclude Include="Adapters\Tile.h" />
-    <ClInclude Include="Adapters\TilesGraph.h" />
-    <ClInclude Include="Adapters\Wall.h" />
+    <ClInclude Include="Adapters\TileGraph.h" />
+    <ClInclude Include="Adapters\WallPacman.h" />
+    <ClInclude Include="Adapters\WallPacmanAdapter.h" />
     <ClInclude Include="Builder\BuilderClasico.h" />
     <ClInclude Include="Builder\BuilderCartoon.h" />
     <ClInclude Include="Builder\Builder.h" />
@@ -238,9 +246,13 @@
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\StageScene.h" />
     <ClInclude Include="Entities\Soil.h" />
+    <ClInclude Include="Entities\SoilGrass.h" />
     <ClInclude Include="system\KeyboardInput.h" />
     <ClInclude Include="Util\Pathfinding.h" />
-    <ClInclude Include="Adapters\WallAdapter.h" />
+    <ClInclude Include="Entities\Wall.h" />
+    <ClInclude Include="Entities\WallMetal.h" />
+    <ClInclude Include="Entities\WallBrick.h" />
+    <ClInclude Include="Entities\WallStone.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\bomber.bmp" />

@@ -1,55 +1,59 @@
 #pragma once
+
 #include <SDL.h>
 
-//
-//#include "Bomberman.h"
-//#include "MuroCeramica.h"
-//#include "MuroMetal.h"
-//#include "SueloCesped.h"
-
-class Bomberman;
-class MuroCeramica;
-class MuroMetal;
-class SueloCesped;
-class Wall;
-
+//class Pacman;
+class WallPacman;
+//class Point;
+//class Blinky;
 
 class Tile
 {
-private:
-	//Bomberman* bomberman;
-	//MuroCeramica* muroCeramica;
-	//MuroMetal* muroMetal;
-	//SueloCesped* sueloCesped;
-	Wall* wall;
-
-	int posicionTileX;
-	int posicionTileY;
-
 public:
-	static const int anchoTile = 32;
-	static const int altoTile = 32;
+	const static int Width = 32;
+	const static int Height = 32;
 
-	// Constructores y destructores
 	Tile();
-	Tile(int _posicionTileX, int _posicionTileY);
+	Tile(int x, int y);
 
-	// Metodos accesores
-	//Bomberman* getBomberman() { return bomberman; }
+	// Sets pointer to Pacman in the tile
+	//void SetPacman(Pacman* pacman);
 
-	//MuroCeramica* getMuroCeramica() { return muroCeramica; }
-	//MuroMetal* getMuroMetal() { return muroMetal; }
-	//SueloCesped* getSueloCesped() { return sueloCesped; }
-	Wall* getWall() { return wall; }
-	int getPosicionTileX() { return posicionTileX; }
-	int getPosicionTileY() { return posicionTileY; }
+	// Sets pointer to wall in the tile
+	void SetWall(WallPacman* wall);
 
-	//void setBomberman(Bomberman* _bomberman) { bomberman = _bomberman; }
-	//void setMuroCeramica(MuroCeramica* _muroCeramica) { muroCeramica = _muroCeramica; }
-	//void setMuroMetal(MuroMetal* _muroMetal) { muroMetal = _muroMetal; }
-	//void setSueloCesped(SueloCesped* _sueloCesped) { sueloCesped = _sueloCesped; }
-	void setWall(Wall* _wall) { wall = _wall; }
-	void setPosicionTileX(int _posicionTileX) { posicionTileX = _posicionTileX; }
-	void setPosicionTileY(int _posicionTileY) { posicionTileY = _posicionTileY; }
+	// Sets pointer to point in the tile
+	//void SetPoint(Point* wall);
+
+	// Sets pointer to Blinky in the tile
+	//void SetBlinky(Blinky* blinky);
+
+	// Sets position of the tile
+	void SetPos(int x, int y);
+
+	// Returns pointer to Pacman in the tile
+	//Pacman* GetPacman();
+	
+	// Returns pointer to wall in the tile
+	WallPacman* GetWall();
+
+	// Returns pointer to wall in the tile
+	//Point* GetPoint();
+
+	// Returns pointer to wall in the tile
+	//Blinky* GetBlinky();
+
+	// Returns position of the tile
+	SDL_Point GetPosition();
+
+private:
+	SDL_Point position;
+	
+	// GameObjects
+
+	//Pacman* pPacman;
+	WallPacman* pWall;
+	//Point* pPoint;
+	//Blinky* pBlinky;
 };
 

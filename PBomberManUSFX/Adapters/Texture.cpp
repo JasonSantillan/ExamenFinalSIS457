@@ -1,80 +1,137 @@
 #include "Texture.h"
 
-SDL_Renderer* Texture::renderer = nullptr;
+SDL_Renderer* Texture::Renderer = NULL;
 
-Texture::Texture() {
-	texturaSDL = nullptr;
-	renderer = nullptr;
-	ancho = 0;
-	alto = 0;
-}
-
-Texture::Texture(SDL_Renderer* _renderer) {
-	texturaSDL = nullptr;
-	renderer = _renderer;
-	ancho = 0;
-	alto = 0;
-}
-
-Texture::~Texture(){
-	free();
-}
-
-void Texture::free() {
-	if (texturaSDL != nullptr) {
-		SDL_DestroyTexture(texturaSDL);
-		texturaSDL = nullptr;
-
-		ancho = 0;
-		alto = 0;
-	}
-}
-
-bool Texture::loadFromImage(std::string path, Uint8 r, Uint8 g, Uint8 b)
+Texture::Texture()
 {
-	free();
+	texture = NULL;
+	width = 0;
+	height = 0;
+}
 
-	if (renderer == nullptr) {
-		std::cout << "No se cuenta con un renderizador" << std::endl;
+Texture::~Texture()
+{
+	Free();
+}
+
+bool Texture::LoadFromImage(std::string path, Uint8 r, Uint8 g, Uint8 b)
+{
+	// Free the previous texture
+	Free();
+
+	// Return if the renderer was not set
+	if (Renderer == NULL)
+		return false;
+
+	// Load image to a surface
+	SDL_Surface* loadedSurface = SDL_LoadBMP(path.c_str());
+	if (loadedSurface == NULL) {
+		printf("Unable to load image %s! SDL Error: %s\n", path.c_str(), SDL_GetError());
 		return false;
 	}
 
-	SDL_Surface* imageSurface = IMG_Load(path.c_str());
-	if (imageSurface == nullptr) {
-		std::cout << "Error al cargar la imagen" << std::endl;
+	// Set color key
+	SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, r, g, b));
+
+	// Create texture from the surface
+	texture = SDL_CreateTextureFromSurface(Texture::Renderer, loadedSurface);
+	if (texture == NULL) {
+		printf("Unable to create texture from surface %s! SDL Error: %s\n", path.c_str(), SDL_GetError());
 		return false;
 	}
 
-	SDL_SetColorKey(imageSurface, SDL_TRUE, SDL_MapRGB(imageSurface->format, r, g, b));
-	texturaSDL = SDL_CreateTextureFromSurface(renderer, imageSurface);
-	if (texturaSDL == nullptr) {
-		std::cout << "Error al crear la textura" << std::endl;
-		return false;
-	}
-		
-	ancho = imageSurface->w;
-	alto = imageSurface->h;
+	// Set width and height of the texture
+	width = loadedSurface->w;
+	height = loadedSurface->h;
 
-	SDL_FreeSurface(imageSurface);
+	// Free the surface
+	SDL_FreeSurface(loadedSurface);
 
 	return true;
 }
 
-void Texture::render(int x, int y, SDL_Rect* clip, SDL_Rect* rect, double angle, SDL_Point* center, SDL_RendererFlip renderFlip) {
-	if(renderer == nullptr) {
+bool Texture::LoadFromRenderedText(TTF_Font* font, std::string text, SDL_Color textColor)
+{
+	// Free the previous texture
+	Free();
+
+	// Return if the renderer was not set
+	if (Renderer == NULL)
+		return false;
+
+	// Render the text using SDL_ttf library
+	SDL_Surface* loadedSurface = TTF_RenderText_Solid(font, text.c_str(), textColor);
+	if (loadedSurface == NULL) {
+		printf("Unable to render text! SDL_ttf Error: %s\n", TTF_GetError());
+		return false;
+	}
+
+	// Create a texture from generated surface
+	texture = SDL_CreateTextureFromSurface(Texture::Renderer, loadedSurface);
+	if (texture == NULL) {
+		printf("Unable to create texture from surface! SDL Error: %s\n", SDL_GetError());
+		return false;
+	}
+
+	// Set width and height of the texture
+	width = loadedSurface->w;
+	height = loadedSurface->h;
+
+	// Free the surface
+	SDL_FreeSurface(loadedSurface);
+
+	return true;
+}
+
+void Texture::Render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip renderFlip)
+{
+	// Return if the renderer was not set
+	if (Renderer == NULL)
 		return;
+
+	SDL_Rect renderQuad = { x, y, GetWidth(), GetHeight() };
+
+	if (clip != NULL) {
+		renderQuad.w = clip->w;
+		renderQuad.h = clip->h;
 	}
 
-	if (rect == nullptr) {
-		SDL_Rect rect2 = { x, y, ancho, alto };
-		if (clip != nullptr) {
-			rect2.w = clip->w;
-			rect2.h = clip->h;
-		}
+	SDL_RenderCopyEx(Renderer, texture, clip, &renderQuad, angle, center, renderFlip);
+}
 
-		SDL_RenderCopyEx(renderer, texturaSDL, clip, &rect2, angle, center, renderFlip);
+void Texture::SetColor(Uint8 red, Uint8 green, Uint8 blue)
+{
+	SDL_SetTextureColorMod(texture, red, green, blue);
+}
+
+void Texture::SetBlendMode(SDL_BlendMode blendMode)
+{
+	SDL_SetTextureBlendMode(texture, blendMode);
+}
+
+void Texture::SetAlpha(Uint8 alpha)
+{
+	SDL_SetTextureAlphaMod(texture, alpha);
+}
+
+void Texture::Free()
+{
+	if (texture != NULL) {
+		// Free the texture and set its pointer to NULL
+		SDL_DestroyTexture(texture);
+		texture = NULL;
+
+		width = 0;
+		height = 0;
 	}
-	else {
-		SDL_RenderCopyEx(renderer, texturaSDL, clip, rect, angle, center, renderFlip);
-	}
+}
+
+int Texture::GetWidth()
+{
+	return width;
+}
+
+int Texture::GetHeight()
+{
+	return height;
 }

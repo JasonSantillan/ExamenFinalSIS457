@@ -1,10 +1,10 @@
-#include "Wall.h"
+#include "WallPacman.h"
 
-SDL_Rect Wall::textureClips[16];
+SDL_Rect WallPacman::textureClips[16];
 
-TilesGraph* Wall::tilesGraph = nullptr;
+TilesGraph* WallPacman::tilesGraph = nullptr;
 
-//Wall::Wall()
+//WallPacman::Wall()
 //{
 //	currTile = nullptr;
 //
@@ -15,7 +15,7 @@ TilesGraph* Wall::tilesGraph = nullptr;
 //	collider.h = Height;
 //}
 
-void Wall::CreateClips()
+void WallPacman::CreateClips()
 {
 	// 0000 - standalone
 	// 1000 - N
@@ -41,7 +41,7 @@ void Wall::CreateClips()
 	textureClips[DIR_N | DIR_E | DIR_S | DIR_W] = { 25, 75, 25, 25 };
 }
 
-Wall::Wall(Tile* tile, Texture* texture)
+WallPacman::WallPacman(Tile* tile, Texture* texture)
 {
 	currTile = tile;
 
@@ -70,12 +70,12 @@ Wall::Wall(Tile* tile, Texture* texture)
 	}
 }
 
-Wall::~Wall()
+WallPacman::~WallPacman()
 {
 	//Free();
 }
 
-void Wall::SetTile(Tile* newTile)
+void WallPacman::SetTile(Tile* newTile)
 {
 	if (currTile != nullptr)
 		currTile->setWall(nullptr);
@@ -90,7 +90,7 @@ void Wall::SetTile(Tile* newTile)
 	}
 }
 
-void Wall::UpdateConnections()
+void WallPacman::UpdateConnections()
 {
 	std::array<Tile*, 4> neighbours = tilesGraph->get4Vecinos(this->currTile);
 
@@ -106,35 +106,35 @@ void Wall::UpdateConnections()
 		connections |= DIR_W;
 }
 
-void Wall::Delete()
+void WallPacman::Delete()
 {
 	//// Calling base function
-	GameObject::deleteGameObject();
+	GameObjectPacman::Delete();
 
 	currTile->setWall(nullptr);
 }
 
-void Wall::Render()
+void WallPacman::Render()
 {
 	wallTexture->render(position.x, position.y, &textureClips[connections]);
 }
 
-SDL_Rect Wall::GetCollider()
+SDL_Rect WallPacman::GetCollider()
 {
 	return collider;
 }
 
-SDL_Point Wall::GetPosition()
+SDL_Point WallPacman::GetPosition()
 {
 	return position;
 }
 
-Tile* Wall::GetTile()
+Tile* WallPacman::GetTile()
 {
 	return currTile;
 }
 
-bool Wall::CheckForWall(Tile* tile)
+bool WallPacman::CheckForWall(Tile* tile)
 {
 	if (tile != nullptr && tile->getWall() != nullptr)
 		return true;

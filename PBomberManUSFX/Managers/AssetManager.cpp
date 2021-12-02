@@ -13,6 +13,7 @@ void AssetManager::load(SDL_Renderer* renderer)
     loadTexture(renderer, GameTexture::Stone, "resources/muro_piedra_01.png");
     loadTexture(renderer, GameTexture::Grass, "resources/suelo_cesped_01.png");
     loadTexture(renderer, GameTexture::Brick, "resources/muro_ceramica_01.png");
+    loadTexture(renderer, GameTexture::WallPacman, "resources/wall_sprite.bmp");
     loadTexture(renderer, GameTexture::Player, "assets/player.png");
     loadTexture(renderer, GameTexture::Enemy1, "assets/enemy_1.png");
     loadTexture(renderer, GameTexture::Enemy2, "assets/enemy_2.png");

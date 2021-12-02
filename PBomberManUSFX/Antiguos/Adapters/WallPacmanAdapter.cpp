@@ -1,8 +1,8 @@
-#include "WallAdapter.h"
+#include "WallPacmanAdapter.h"
 #include "../Const.h"
 
-WallAdapter::WallAdapter(std::shared_ptr<SDL_Texture> _texture, SDL_Renderer* _renderer)
-    : GameActor(_texture, _renderer), Wall(nullptr, nullptr)
+WallPacmanAdapter::WallPacmanAdapter(std::shared_ptr<SDL_Texture> _texture, SDL_Renderer* _renderer)
+    : GameActor(_texture, _renderer), WallPacman(nullptr, nullptr)
 {
     // movement animation
     movement = std::make_shared<Animation>();
@@ -18,7 +18,7 @@ WallAdapter::WallAdapter(std::shared_ptr<SDL_Texture> _texture, SDL_Renderer* _r
     addAnimation(movement);
 }
 
-void WallAdapter::update(const unsigned int delta)
+void WallPacmanAdapter::update(const unsigned int delta)
 {
     GameActor::update(delta);
 }

@@ -1,39 +1,52 @@
 #pragma once
-#include <iostream>
-#include <SDL.h>
-#include <SDL_image.h>
 
+#include <string>
+#include <SDL.h>
+#include <SDL_ttf.h>
+// #include <SDL_image.h>
 
 class Texture
 {
-private:
-	SDL_Texture* texturaSDL;
-	int ancho;
-	int alto;
 public:
-	static SDL_Renderer* renderer;
+	// Static SDL_Renderer so we don't have to ask for it
+	// when creating the texture or when rendering
+	// TODO: Temporary solution, should be removed after implementation of Game class
+	static SDL_Renderer* Renderer;
 
-public:
 	Texture();
-	Texture(SDL_Renderer* _renderer);
-
 	~Texture();
 
-	void free();
+	// Load texture from file
+	bool LoadFromImage(std::string path, Uint8 r = 0, Uint8 g = 0, Uint8 b = 0);
 
-	// Metodos accesores
-	SDL_Texture* getTexturaSDL() { return texturaSDL; }
-	int getAncho() { return ancho; }
-	int getAlto() { return alto; }
-	SDL_Renderer* getRenderer() { return renderer; }
+	// Load texture from rendered text
+	bool LoadFromRenderedText(TTF_Font* font, std::string text, SDL_Color textColor);
 
-	void setTexturaSDL(SDL_Texture* _texturaSDL) { texturaSDL = _texturaSDL; }
-	void setAncho(int _ancho) { ancho = _ancho; }
-	void setAlto(int _alto) { alto = _alto; }
-	void setRenderer(SDL_Renderer* _renderer) { renderer = _renderer; }
+	// Render the texture
+	void Render(int x, int y, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip renderFlip = SDL_FLIP_NONE);
 
-	// Metodos especificos
-	bool loadFromImage(std::string path, Uint8 r = 0, Uint8 g = 0, Uint8 b = 0);
-	void render(int x, int y, SDL_Rect* clip = nullptr, SDL_Rect* rect = nullptr, double angle = 0.0, SDL_Point* center = nullptr, SDL_RendererFlip renderFlip = SDL_FLIP_NONE);
+	// Set color
+	void SetColor(Uint8 red, Uint8 green, Uint8 blue);
+
+	// Set blend mode
+	void SetBlendMode(SDL_BlendMode blendMode);
+
+	// Set alpha
+	void SetAlpha(Uint8 alpha);
+
+	void SetSDLTexture(SDL_Texture* _texture) { texture = _texture; }
+
+	// Free assets
+	void Free();
+
+	int GetWidth();
+	int GetHeight();
+
+private:
+	// Actual texture
+	SDL_Texture* texture;
+
+	int width;
+	int height;
 };
 

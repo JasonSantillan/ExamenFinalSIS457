@@ -2,7 +2,7 @@
 #include <SDL.h>
 
 
-#include "../Entities/GameObject.h"
+#include "../Adapters/GameObjectPacman.h"
 #include "../Adapters/Texture.h"
 #include "../Adapters/TilesGraph.h"
 
@@ -13,30 +13,30 @@ enum WorldDirections {
 	DIR_W = 1 << 3
 };
 
-class Wall : public GameObject
+class WallPacman : public GameObjectPacman
 {
 public:
 	static TilesGraph* tilesGraph;
 
-	// Prefixed width and height of a wall
+	// Prefixed width and height of a WallPacman
 	static const int Width = 25;
 	static const int Height = 25;
 
 	// Creates connection clips
 	static void CreateClips();
 
-	// Wall();
+	// WallPacman();
 
-	Wall(Tile* tile, Texture* texture);
-	~Wall();
+	WallPacman(Tile* tile, Texture* texture);
+	~WallPacman();
 
 	// Loads texture and sets up animation clips
 	// bool LoadMedia();
 
-	// Sets the tile of the wall
+	// Sets the tile of the WallPacman
 	void SetTile(Tile* newTile);
 
-	// Updates the texture of the wall to match connections
+	// Updates the texture of the WallPacman to match connections
 	void UpdateConnections();
 
 	// Handles key presses
@@ -48,7 +48,7 @@ public:
 	// Mark the object to be deleted
 	void Delete();
 
-	// Renders the wall
+	// Renders the WallPacman
 	void Render();
 
 	// Releases texture memory
@@ -60,11 +60,15 @@ public:
 	// Returns position
 	SDL_Point GetPosition();
 
-	// Returns wall's tile
+	// Returns WallPacman's tile
 	Tile* GetTile();
 
+	virtual void render(const SDL_Rect& camera) {};
+	virtual void update(const unsigned int delta) {};
+	virtual void handleEvent(SDL_Event* _event) {};
+
 private:
-	// Checks if the tile is valid and if there's a wall in it
+	// Checks if the tile is valid and if there's a WallPacman in it
 	bool CheckForWall(Tile* tile);
 
 	Texture* wallTexture;
