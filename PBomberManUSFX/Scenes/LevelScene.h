@@ -27,6 +27,10 @@
 #include "../Adapters/TileGraph.h"
 #include "../Adapters/Tile.h"
 
+#include "../Decorator/DecoratorWall.h"
+#include "../Decorator/BorderDecoratorWall.h"
+#include "../Decorator/ShineDecoratorWall.h"
+
 /**
     * @brief Level Scene
     *

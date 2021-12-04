@@ -17,8 +17,8 @@ public:
 	//static TileGraph* tileGraph;
 
 	// Prefixed width and height of a wall
-	static const int Width = 25;
-	static const int Height = 25;
+	static const int Width = 32;
+	static const int Height = 32;
 
 	// Creates connection clips
 	static void CreateClips();

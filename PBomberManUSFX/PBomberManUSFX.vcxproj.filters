@@ -114,15 +114,6 @@
     <ClCompile Include="Entities\ClasicoPlayer.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Entities\Muro.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Entities\MuroPiedra.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="Builder\Builder.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -172,6 +163,18 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="Adapters\WallPacmanAdapter.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Decorator\DecoratorWall.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Decorator\BorderDecoratorWall.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Decorator\ShineDecoratorWall.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -284,12 +287,6 @@
     <ClInclude Include="Entities\ClasicoPlayer.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Entities\Muro.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Entities\MuroPiedra.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="GameVersions.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -342,6 +339,15 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Adapters\WallPacmanAdapter.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Decorator\DecoratorWall.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Decorator\BorderDecoratorWall.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Decorator\ShineDecoratorWall.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

@@ -23,7 +23,8 @@ LevelScene::LevelScene(GameManager* _gameManager, const unsigned int _stage, con
     
     // common field parameters
     fieldPositionX = 0;
-    fieldPositionY = gameManager->getWindowHeight() / 15;
+    //fieldPositionY = gameManager->getWindowHeight() / 15;
+    fieldPositionY = 0;
     const float scale = (gameManager->getWindowHeight() - fieldPositionY) / static_cast<float>(tileArrayHeight * tileSize);
     scaledTileSize = static_cast<int>(round(scale * tileSize));
     // menu music
@@ -42,8 +43,7 @@ LevelScene::LevelScene(GameManager* _gameManager, const unsigned int _stage, con
     tileGraph = new TileGraph(30, 30);
     crearObjetosJuego("resources/level1.txt");
     // prepare player
-    spawnPlayer(fieldPositionX + playerStartX * scaledTileSize,
-                fieldPositionY + playerStartY * scaledTileSize);
+    spawnPlayer(fieldPositionX + playerStartX * scaledTileSize, fieldPositionY + playerStartY * scaledTileSize);
     // generate enemies
     generateEnemies();
     // set timer
@@ -69,7 +69,8 @@ LevelScene::LevelScene(GameManager* _gameManager, GameVersion _gameVersion, cons
 
     // common field parameters
     fieldPositionX = 0;
-    fieldPositionY = gameManager->getWindowHeight() / 15;
+    fieldPositionY = 0;
+    //fieldPositionY = gameManager->getWindowHeight() / 15;
     const float scale = (gameManager->getWindowHeight() - fieldPositionY) / static_cast<float>(tileArrayHeight * tileSize);
     scaledTileSize = static_cast<int>(round(scale * tileSize));
     // menu music
@@ -218,8 +219,13 @@ void LevelScene::spawnBrick(const int positionX, const int positionY)
 
 void LevelScene::spawnStone(const int positionX, const int positionY)
 {
-    auto stone = std::make_shared<WallStone>(gameManager->getAssetManager()->getTexture(GameTexture::Stone),
-                                            gameManager->getRenderer());
+    auto stone = std::make_shared<BorderDecoratorWall>(
+        gameManager->getAssetManager()->getTexture(GameTexture::Stone), gameManager->getRenderer(), (Wall*)(
+            std::make_shared<WallStone>(
+                gameManager->getAssetManager()->getTexture(GameTexture::Stone), gameManager->getRenderer()
+                ).get()
+            )
+    );
     stone->setPosition(positionX, positionY);
     stone->setSize(scaledTileSize, scaledTileSize);
     addObject(stone);
