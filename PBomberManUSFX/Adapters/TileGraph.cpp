@@ -1,26 +1,30 @@
 #include "TileGraph.h"
 #include <algorithm>
 
+int TileGraph::widthTileGraph = 0;
+int TileGraph::heightTileGraph = 0;
+
 TileGraph::TileGraph()
 {
-	width = 0;
-	height = 0;
+	widthTileGraph = 0;
+	heightTileGraph = 0;
 }
 
 TileGraph::TileGraph(int w, int h)
 {
 	// Set position of all tiles
 	// NOTE: This could propably be also made with constructor
-	
+
+	widthTileGraph = w;
+	heightTileGraph = h;
+
 	for (int y = 0; y < h; y++) {
 		for (int x = 0; x < w; x++) {
 			tilesGraph.push_back(new Tile(x, y));
 		}
 	}
+	//std::cout << "Dentro de TileGraph()" << std::endl;
 
-
-	width = w;
-	height = h;
 }
 
 void TileGraph::Setup(int w, int h)
@@ -29,15 +33,14 @@ void TileGraph::Setup(int w, int h)
 	if (tilesGraph.size() > 0)
 		tilesGraph.clear();
 
+	widthTileGraph = w;
+	heightTileGraph = h;
+
 	for (int y = 0; y < h; y++) {
 		for (int x = 0; x < w; x++) {
 			tilesGraph.push_back(new Tile(x, y));
 		}
 	}
-
-
-	width = w;
-	height = h;
 }
 
 TileGraph::~TileGraph()
@@ -48,6 +51,7 @@ TileGraph::~TileGraph()
 Tile* TileGraph::GetTileAt(int x, int y)
 {
 	int index = GetIndex(x, y);
+	
 	if (index < 0)
 		return nullptr;
 
@@ -93,20 +97,20 @@ std::array<class Tile*, 8> TileGraph::GetNeighboursDiag(class Tile* tile)
 //	for (unsigned int i = 0; i < width * height; i++) {
 //		Tile tile = tiles[i];
 //
-//		if (tile.GetPacman() != NULL)
+//		if (tile.GetPacman() != nullptr)
 //			return tile.GetPacman();
 //	}
 //
-//	return NULL;
+//	return nullptr;
 //}
 
 int TileGraph::GetIndex(int x, int y)
 {
-	if (x >= width || y >= height)
+	if (x >= widthTileGraph || y >= heightTileGraph)
 		return -1;
 
 	if (x < 0 || y < 0)
 		return -1;
 
-	return x + y * width;
+	return x + y * widthTileGraph;
 }

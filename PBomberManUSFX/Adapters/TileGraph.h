@@ -37,8 +37,8 @@ public:
 private:
 	Tile* tiles;
 	vector<Tile*> tilesGraph;
-	int width;
-	int height;
+	static int widthTileGraph;
+	static int heightTileGraph;
 
 	int GetIndex(int x, int h);
 };

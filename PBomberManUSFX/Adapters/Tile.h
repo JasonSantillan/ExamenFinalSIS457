@@ -10,8 +10,8 @@ class WallPacman;
 class Tile
 {
 public:
-	const static int Width = 32;
-	const static int Height = 32;
+	static int tileWidth;
+	static int tileHeight;
 
 	Tile();
 	Tile(int x, int y);

@@ -12,9 +12,9 @@ void WallStone::update(const unsigned int delta)
     Wall::update(delta);
 }
 
-void WallStone::render(const SDL_Rect& camera) const
+void WallStone::render(const SDL_Rect& camera)
 {
     Wall::render(camera);
-    //std::cout << "dentro de wallstone" << std::endl;
+    std::cout << "dentro de wallstone" << std::endl;
 
 }

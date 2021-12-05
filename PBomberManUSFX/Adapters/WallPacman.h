@@ -61,8 +61,13 @@ public:
 	// Returns wall's tile
 	Tile* GetTile();
 
+	void setSDLPosition(int _x, int _y) {
+		position.x = _x;
+		position.y = _y;
+	}
 protected:
 	Texture* wallTexture;
+	
 
 private:
 	// Checks if the tile is valid and if there's a wall in it

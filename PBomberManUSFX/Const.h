@@ -29,10 +29,11 @@ const int bangSpawnPositions[bangSpawnCells][2] = {{0, 0},
                                                    {0, -1},
                                                    {-1, 0}}; // cell's position of bang
 
-const unsigned int tileArrayWidth = 31;                   // tile array width
-const unsigned int tileArrayHeight = 13;                  // tile array height
+const unsigned int tileArrayWidth = 25;                   // tile array width
+const unsigned int tileArrayHeight = 15;                  // tile array height
 const unsigned int tileSize = 16;                         // size in pixels of tile
-const GameTile baseTiles[tileArrayHeight][tileArrayWidth] = { // base tilemap
+//const GameTile baseTiles[tileArrayHeight][tileArrayWidth] = { // base tilemap
+const GameTile baseTiles[13][31] = { // base tilemap
     {GameTile::Stone, GameTile::Stone, GameTile::Stone, GameTile::Stone, GameTile::Stone, GameTile::Stone, GameTile::Stone, GameTile::Stone,
      GameTile::Stone, GameTile::Stone, GameTile::Stone, GameTile::Stone, GameTile::Stone, GameTile::Stone, GameTile::Stone, GameTile::Stone,
      GameTile::Stone, GameTile::Stone, GameTile::Stone, GameTile::Stone, GameTile::Stone, GameTile::Stone, GameTile::Stone, GameTile::Stone,

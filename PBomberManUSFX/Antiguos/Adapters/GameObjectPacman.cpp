@@ -1,6 +1,6 @@
 #include "GameObjectPacman.h"
 
-TileGraph* GameObjectPacman::tileGraph = NULL;
+TileGraph* GameObjectPacman::tileGraph = nullptr;
 
 void GameObjectPacman::HandleEvents(SDL_Event* event) {}
 void GameObjectPacman::Update() {}

@@ -1,21 +1,24 @@
 #include "Tile.h"
 
+int Tile::tileWidth = 32;
+int Tile::tileHeight = 32;
+
 Tile::Tile()
 {
 	position = { 0,0 };
 
-	//pPacman = NULL;
-	pWall = NULL;
-	//pPoint = NULL;
+	//pPacman = nullptr;
+	pWall = nullptr;
+	//pPoint = nullptr;
 }
 
 Tile::Tile(int x, int y)
 {
 	position = { x,y };
 
-	//pPacman = NULL;
-	pWall = NULL;
-	//pPoint = NULL;
+	//pPacman = nullptr;
+	pWall = nullptr;
+	//pPoint = nullptr;
 }
 
 void Tile::SetPos(int x, int y)

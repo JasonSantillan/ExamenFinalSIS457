@@ -10,7 +10,7 @@ public:
         wall = _wall;
     }
     
-    void render(const SDL_Rect& camera) const;
+    void render(const SDL_Rect& camera);
     
 };
 

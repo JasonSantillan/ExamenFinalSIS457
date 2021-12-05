@@ -4,7 +4,7 @@ SDL_Rect WallPacman::textureClips[16];
 
 //WallPacman::WallPacman()
 //{
-//	currTile = NULL;
+//	currTile = nullptr;
 //
 //	position.x = 0;
 //	position.y = 0;
@@ -21,22 +21,22 @@ void WallPacman::CreateClips()
 	// 0010 - S
 	// 0001 - W
 
-	textureClips[0] = { 0, 0, 25, 25 };
-	textureClips[DIR_N] = { 25, 0, 25, 25 };
-	textureClips[DIR_E] = { 50, 0, 25, 25 };
-	textureClips[DIR_S] = { 75, 0, 25, 25 };
-	textureClips[DIR_W] = { 0, 25, 25, 25 };
-	textureClips[DIR_N | DIR_E] = { 25, 25, 25, 25 };
-	textureClips[DIR_S | DIR_E] = { 50, 25, 25, 25 };
-	textureClips[DIR_S | DIR_W] = { 75, 25, 25, 25 };
-	textureClips[DIR_N | DIR_W] = { 0, 50, 25, 25 };
-	textureClips[DIR_N | DIR_S] = { 50, 100, 25, 25 };
-	textureClips[DIR_E | DIR_W] = { 75, 100, 25, 25 };
-	textureClips[DIR_N | DIR_E | DIR_W] = { 25, 50, 25, 25 };
-	textureClips[DIR_N | DIR_E | DIR_S] = { 50, 50, 25, 25 };
-	textureClips[DIR_E | DIR_S | DIR_W] = { 75, 50, 25, 25 };
-	textureClips[DIR_N | DIR_S | DIR_W] = { 0, 75, 25, 25 };
-	textureClips[DIR_N | DIR_E | DIR_S | DIR_W] = { 25, 75, 25, 25 };
+	textureClips[0] = { 0, 0, 32, 64 };
+	textureClips[DIR_N] = { 32, 0, 32, 32 };
+	textureClips[DIR_E] = { 64, 0, 32, 32 };
+	textureClips[DIR_S] = { 96, 0, 32, 32 };
+	textureClips[DIR_W] = { 0, 32, 33, 33 };
+	textureClips[DIR_N | DIR_E] = { 32, 32, 32, 32 };
+	textureClips[DIR_S | DIR_E] = { 64, 32, 32, 32 };
+	textureClips[DIR_S | DIR_W] = { 96, 32, 32, 32 };
+	textureClips[DIR_N | DIR_W] = { 0, 64, 32, 32 };
+	textureClips[DIR_N | DIR_S] = { 64, 128, 32, 32 };
+	textureClips[DIR_E | DIR_W] = { 96, 128, 32, 32 };
+	textureClips[DIR_N | DIR_E | DIR_W] = { 32, 64, 32, 32 };
+	textureClips[DIR_N | DIR_E | DIR_S] = { 64, 64, 32, 32 };
+	textureClips[DIR_E | DIR_S | DIR_W] = { 96, 64, 32, 32 };
+	textureClips[DIR_N | DIR_S | DIR_W] = { 0, 96, 32, 32 };
+	textureClips[DIR_N | DIR_E | DIR_S | DIR_W] = { 32, 96, 32, 32 };
 }
 
 WallPacman::WallPacman(Tile* tile, Texture* texture)
@@ -45,22 +45,25 @@ WallPacman::WallPacman(Tile* tile, Texture* texture)
 
 	wallTexture = texture;
 
-	if (currTile != NULL) {
+	if (currTile != nullptr) {
 		currTile->SetWall(this);
 
-		position.x = currTile->GetPosition().x * Width;
-		position.y = currTile->GetPosition().y * Height;
+		position.x = currTile->GetPosition().x * Tile::tileWidth;
+		position.y = currTile->GetPosition().y * Tile::tileHeight;
+		/*cout << "Aqui" << endl;
+		cout << currTile->GetPosition().x << ", " << currTile->GetPosition().y << endl;*/
 	}
 	else {
 		position.x = 0;
 		position.y = 0;
 	}
 
-	collider.w = Width;
-	collider.h = Height;
+	collider.w = Tile::tileWidth;
+	collider.h = Tile::tileHeight;
 
+	
 	UpdateConnections();
-
+	
 	std::array<Tile*, 4> neighbours = tileGraph->GetNeighbours(this->currTile);
 	for (int i = 0; i < 4; i++) {
 		if (CheckForWall(neighbours[i]))
@@ -75,16 +78,16 @@ WallPacman::~WallPacman()
 
 void WallPacman::SetTile(Tile* newTile)
 {
-	if (currTile != NULL)
-		currTile->SetWall(NULL);
+	if (currTile != nullptr)
+		currTile->SetWall(nullptr);
 
 	currTile = newTile;
 
-	if (currTile != NULL) {
+	if (currTile != nullptr) {
 		currTile->SetWall(this);
 
-		position.x = currTile->GetPosition().x * Width;
-		position.y = currTile->GetPosition().y * Height;
+		position.x = currTile->GetPosition().x * Tile::tileWidth;
+		position.y = currTile->GetPosition().y * Tile::tileHeight;
 	}
 }
 
@@ -109,7 +112,7 @@ void WallPacman::Delete()
 	// Calling base function
 	GameObjectPacman::Delete();
 
-	currTile->SetWall(NULL);
+	currTile->SetWall(nullptr);
 }
 
 void WallPacman::Render()
@@ -134,7 +137,7 @@ Tile* WallPacman::GetTile()
 
 bool WallPacman::CheckForWall(Tile* tile)
 {
-	if (tile != NULL && tile->GetWall() != NULL)
+	if (tile != nullptr && tile->GetWall() != nullptr)
 		return true;
 
 	return false;

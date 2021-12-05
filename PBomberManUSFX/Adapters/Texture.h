@@ -23,7 +23,7 @@ public:
 	bool LoadFromRenderedText(TTF_Font* font, std::string text, SDL_Color textColor);
 
 	// Render the texture
-	void Render(int x, int y, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip renderFlip = SDL_FLIP_NONE);
+	void Render(int x, int y, SDL_Rect* clip = nullptr, double angle = 0.0, SDL_Point* center = nullptr, SDL_RendererFlip renderFlip = SDL_FLIP_NONE);
 
 	// Set color
 	void SetColor(Uint8 red, Uint8 green, Uint8 blue);

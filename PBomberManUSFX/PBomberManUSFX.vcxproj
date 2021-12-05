@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClCompile Include="Adapters\GameObjectPacman.cpp" />
     <ClCompile Include="Adapters\Texture.cpp" />
+    <ClCompile Include="Adapters\TextureManager.cpp" />
     <ClCompile Include="Adapters\Tile.cpp" />
     <ClCompile Include="Adapters\TileGraph.cpp" />
     <ClCompile Include="Adapters\WallPacman.cpp" />
@@ -200,6 +201,7 @@
   <ItemGroup>
     <ClInclude Include="Adapters\GameObjectPacman.h" />
     <ClInclude Include="Adapters\Texture.h" />
+    <ClInclude Include="Adapters\TextureManager.h" />
     <ClInclude Include="Adapters\Tile.h" />
     <ClInclude Include="Adapters\TileGraph.h" />
     <ClInclude Include="Adapters\WallPacman.h" />

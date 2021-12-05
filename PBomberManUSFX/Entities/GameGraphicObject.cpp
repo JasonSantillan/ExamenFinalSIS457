@@ -64,7 +64,7 @@ void GameGraphicObject::setFlip(SDL_RendererFlip flip)
 
 void GameGraphicObject::update(const unsigned int /*delta*/) {}
 
-void GameGraphicObject::render(const SDL_Rect& camera) const
+void GameGraphicObject::render(const SDL_Rect& camera)
 {
     if(renderer != nullptr && texture != nullptr)
     {
