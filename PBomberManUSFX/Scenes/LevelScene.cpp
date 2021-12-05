@@ -226,19 +226,22 @@ void LevelScene::spawnBrick(const int positionX, const int positionY)
 
 void LevelScene::spawnStone(const int positionX, const int positionY)
 {
-    //std::shared_ptr<BorderDecoratorWall> stone new() ;
-    /*auto stone = std::shared_ptr<BorderDecoratorWall> new(
+    //std::shared_ptr<BorderDecoratorWall> stone;
+    //auto stone = std::make_shared<BorderDecoratorWall>(
+   /* shared_ptr<BorderDecoratorWall> stone (new BorderDecoratorWall(
         gameManager->getAssetManager()->getTexture(GameTexture::Stone), gameManager->getRenderer(), (Wall*)(
-            std::make_shared<WallStone>(
+            std::shared_ptr<WallStone>(new WallStone(
                 gameManager->getAssetManager()->getTexture(GameTexture::Stone), gameManager->getRenderer()
-                ).get()
+                )).get()
             )
-    );*/
-    auto stone = std::make_shared<WallStone>(gameManager->getAssetManager()->getTexture(GameTexture::Stone), gameManager->getRenderer());
+    ));*/
+    GameActor* stone = new ShineDecoratorWall(gameManager->getAssetManager()->getTexture(GameTexture::Stone), gameManager->getRenderer(), new BorderDecoratorWall(gameManager->getAssetManager()->getTexture(GameTexture::Stone), gameManager->getRenderer(), new WallStone(gameManager->getAssetManager()->getTexture(GameTexture::Stone), gameManager->getRenderer())));
+    //auto stone = std::make_shared<WallStone>(gameManager->getAssetManager()->getTexture(GameTexture::Stone), gameManager->getRenderer());
     stone->setPosition(positionX, positionY);
     stone->setSize(scaledTileSize, scaledTileSize);
-    addObject(stone);
-    collisions.push_back(std::make_pair(GameTile::Stone, stone));
+    std::shared_ptr<GameActor> temp(stone);
+    addObject(temp);
+    collisions.push_back(std::make_pair(GameTile::Stone, temp));
     backgroundObjectLastNumber++;
 }
 
@@ -985,141 +988,39 @@ bool LevelScene::crearObjetosJuego(string _path)
 
     string line;
     
-    //GameTexture* texturaBomberman;
-    //texturaBomberman = new GameTexture();
-    //GameTexture* texturaBomberwoman;
-    //texturaBomberwoman = new GameTexture();
-    //GameTexture* texturaMuroMetal;
-    //texturaMuroMetal = new GameTexture();
-    //GameTexture* texturaMuroCeramica;
-    //texturaMuroCeramica = new GameTexture();
-    //GameTexture* texturaSueloCesped;
-    //texturaSueloCesped = new GameTexture();
-    //
-    //GameTexture::renderer = renderer;
-
-    //texturaBomberman->loadFromImage("resources/bomberman.png");
-    //texturaBomberwoman->loadFromImage("resources/bomberman.jpg");
-    //texturaMuroCeramica->loadFromImage("resources/muro_ceramica.jpg");
-    //texturaMuroMetal->loadFromImage("resources/muro_metal.jpg");
-    //texturaSueloCesped->loadFromImage("resources/suelo_cesped.jpg");
-    //
-
     tileGraph = new TileGraph(25, 15);
     GameObjectPacman::tileGraph = tileGraph;
     Texture::Renderer = gameManager->getRenderer();
    
     int x = 0;
     int y = 0;
-    //int bombermanPosicionX = -1;
-    //int bombermanPosicionY = -1;
-    //int bomberwomanPosicionX = -1;
-    //int bomberwomanPosicionY = -1;
-
+    
     while (getline(file, line)) {
     	vector<char> chars(line.begin(), line.end());
     	x = 0;
 
     	for (int i = 0; i < chars.size(); i++) {
     		if (chars[i] != ' ') {
-    //			GameObject* objetoNuevo = nullptr;
-                //std::cout << "x:" << x << ", y:" <<  y << std::endl;
     			Tile* tile = tileGraph->GetTileAt(x, y);
                 
-                //std::cout << "X:" << tile->GetPosition().x << ", Y:" << tile->GetPosition().y << std::endl;
     			switch (chars[i]) {
     			case '0':
-                    //spawnGrass(x * scaledTileSize, y * scaledTileSize);
                     spawnGrass(fieldPositionX + x * scaledTileSize, fieldPositionY + y * scaledTileSize);
-                    //objetoNuevo = new SueloCesped(texturaSueloCesped, tileNuevo);
-    //				objetoNuevo = new SueloCesped((std::shared_ptr<SDL_Texture>)texturaSueloCesped->getTexturaSDL(), renderer,tileNuevo);
-    //				if (x > bombermanPosicionX && bombermanPosicionX == -1) {
-    //					bombermanPosicionX = x;
-    //					bombermanPosicionY = y;
-    //				}
-
-    //				if (x > bomberwomanPosicionX || y > bomberwomanPosicionY) {
-    //					bomberwomanPosicionX = x;
-    //					bomberwomanPosicionY = y;
-    //				}
-
-    //				//pilaObjetosJuegoMurosMetal.Insertar((GameActor*)objetoNuevo);
-
     				break;
     			case '1':
-                    //spawnBrick(x * scaledTileSize, y * scaledTileSize);
                     spawnGrass(fieldPositionX + x * scaledTileSize, fieldPositionY + y * scaledTileSize);
                     spawnBrick(fieldPositionX + x * scaledTileSize, fieldPositionY + y * scaledTileSize);
-                    // 				
-    //              //objetoNuevo = new MuroCeramica(texturaMuroMetal, tileNuevo);
-    //				objetoNuevo = new MuroCeramica((std::shared_ptr<SDL_Texture>)texturaMuroCeramica->getTexturaSDL(), renderer, tileNuevo);
-    //				break;
-    //				/*case 'B':
-    //					objetoNuevo = new Bomberman(texturaBomberman, tileNuevo);
-    //					break;*/
                     break;
     			case '2':
-                    //spawnStone(x * scaledTileSize, y * scaledTileSize);
-                    //spawnStone(fieldPositionX + x * scaledTileSize, fieldPositionY + y * scaledTileSize);
-
-                    //spawnWallPacman(x * scaledTileSize, y * scaledTileSize, tile);
-                    spawnWallPacman(fieldPositionX + x * scaledTileSize, fieldPositionY + y * scaledTileSize, tile);
-    //              //objetoNuevo = new MuroMetal(texturaMuroCeramica, tileNuevo);
-    				//objetoNuevo = new MuroMetal((std::shared_ptr<SDL_Texture>)texturaMuroMetal->getTexturaSDL(), renderer, tileNuevo);
-    				break;
-    			
+                    spawnStone(fieldPositionX + x * scaledTileSize, fieldPositionY + y * scaledTileSize);
+                    //spawnWallPacman(fieldPositionX + x * scaledTileSize, fieldPositionY + y * scaledTileSize, tile);
+       				break;
     			}
-
-    			//if (objetoNuevo != nullptr) {
-    //				
-    //				/*((GameActor*)objetoNuevo)->setPosicionX(x * 34);
-    //				((GameActor*)objetoNuevo)->setPosicionY(y * 34);*/
-
-    //				((Sprite*)objetoNuevo)->setPosition(x * GameTile::anchoTile, y * GameTile::altoTile);
-    //				((Sprite*)objetoNuevo)->setSize(GameTile::anchoTile, GameTile::altoTile);
-    //				((Sprite*)objetoNuevo)->setClip(GameTile::anchoTile, GameTile::altoTile, GameTile::anchoTile, GameTile::altoTile);
-
-
-    //				vectorObjectosJuego.push_back(objetoNuevo);
-    			
-    			//}
                 x++;
     		}
     	}
     	y++;
     }
-
-    //
-    //GameObject* objetoBomberman = nullptr;
-    //GameTile* tileNuevo = tilesGraph->getTileEn(bombermanPosicionX, bombermanPosicionY);
-    //objetoBomberman = new Bomberman((std::shared_ptr<SDL_Texture>)texturaBomberman->getTexturaSDL(), renderer, tileNuevo);
-    //if (objetoBomberman != nullptr) {
-    //	/*((GameActor*)objetoBomberman)->setPosicionX(bombermanPosicionX * 34);
-    //	((GameActor*)objetoBomberman)->setPosicionY(bombermanPosicionY * 34);
-    //	*/
-    //	((Sprite*)objetoBomberman)->setPosition(bombermanPosicionX * 34, bombermanPosicionY * 34);
-    //	((Sprite*)objetoBomberman)->setSize(GameTile::anchoTile, GameTile::altoTile);
-    //	((Sprite*)objetoBomberman)->setClip(GameTile::anchoTile * 34, GameTile::altoTile * 34, GameTile::anchoTile, GameTile::altoTile);
-
-
-    //	vectorObjectosJuego.push_back(objetoBomberman);
-    //}
-
-    ///*GameObject* objetoBomberwoman = nullptr;
-    //tileNuevo = tilesGraph->getTileEn(bomberwomanPosicionX, bomberwomanPosicionY);
-    //objetoBomberwoman = new Bomberman(texturaBomberwoman, tileNuevo);
-    //if (objetoBomberwoman != nullptr) {
-    //	((GameActor*)objetoBomberwoman)->setPosicionX(bomberwomanPosicionX * 34);
-    //	((GameActor*)objetoBomberwoman)->setPosicionY(bomberwomanPosicionY * 34);
-    //	((GamePawn*)objetoBomberwoman)->setBotomBomba(SDLK_o);
-    //	((GamePawn*)objetoBomberwoman)->setBotomArriba(SDLK_w);
-    //	((GamePawn*)objetoBomberwoman)->setBotomAbajo(SDLK_s);
-    //	((GamePawn*)objetoBomberwoman)->setBotomIzquierda(SDLK_a);
-    //	((GamePawn*)objetoBomberwoman)->setBotomDerecha(SDLK_d);
-
-    //	vectorObjectosJuego.push_back(objetoBomberwoman);
-    //}*/
-
 
     return false;
 }

@@ -1,16 +1,16 @@
 #pragma once
-#include "../Entities/Wall.h"
+#include "../Entities/GameActor.h"
 class DecoratorWall :
-    public Wall
+    public GameActor
 {
 private:
-    Wall* wall;
+    GameActor* wall;
 public:
-    DecoratorWall(std::shared_ptr<SDL_Texture> texture, SDL_Renderer* renderer, Wall* _wall):Wall(texture, renderer) {
+    DecoratorWall(std::shared_ptr<SDL_Texture> texture, SDL_Renderer* renderer, GameActor* _wall):GameActor(texture, renderer) {
         wall = _wall;
     }
     
-    void render(const SDL_Rect& camera);
+    void render(const SDL_Rect& _camera);
     
 };
 
