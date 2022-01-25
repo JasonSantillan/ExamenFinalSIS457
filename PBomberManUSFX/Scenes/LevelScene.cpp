@@ -263,6 +263,7 @@ void LevelScene::spawnSuperBall(const int positionX, const int positionY)
         gameManager->getRenderer());
     superBall->setPosition(positionX, positionY);
     superBall->setSize(scaledTileSize, scaledTileSize);
+    superBalls.push_back(superBall);
     addObject(superBall);
     backgroundObjectLastNumber++;
 }
@@ -523,7 +524,7 @@ void LevelScene::update(const unsigned int delta)
     // update collision of bricks
     updateBangsCollision();
     // update superball collisions
-    //updateSuperBallCollision();
+    updateSuperBallCollision();
     // update camera
     updateCamera();
     // update timers
@@ -907,10 +908,22 @@ void LevelScene::updateBangsCollision()
 
 void LevelScene::updateSuperBallCollision() 
 {
-    //for (const auto& superball : su)
-    //{
-
-    //}
+    for (const auto& superball : superBalls)
+    {
+        // check player
+        if (player != nullptr)
+        {
+            SDL_Rect playerRect = player->getRect();
+            playerRect.w = static_cast<int>(playerRect.w * 0.2f);
+            playerRect.h = static_cast<int>(playerRect.h * 0.2f);
+            if (isCollisionDetected(playerRect, superball->getRect()))
+            {
+                removeObject(superball);
+                //player = nullptr;
+                //gameOver();
+            }
+        }
+    }
 
 }
 

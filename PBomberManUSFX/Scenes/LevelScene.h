@@ -148,6 +148,7 @@ private:
     std::vector<std::shared_ptr<Enemy>> enemies;                      // enemies
     std::vector<std::pair<GameTile, std::shared_ptr<GameGraphicObject>>> collisions; // collisions
     std::vector<std::shared_ptr<GameGraphicObject>> bangs;                       // bomb's bang
+    std::vector<std::shared_ptr<GameActor>> superBalls;                       // bomb's bang
     GameTile tiles[tileArrayHeight][tileArrayWidth];                      // tilemap
 
 
