@@ -6,6 +6,7 @@ enum class GameTexture : int
     Metal,
     Stone,
     Grass,
+    SuperBall,
     Brick,
     WallPacman,
     Player,

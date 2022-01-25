@@ -74,6 +74,9 @@ private:
     void spawnBrick(const int positionX, const int positionY);
     void spawnStone(const int positionX, const int positionY);
     void spawnWallPacman(const int positionX, const int positionY, Tile* _tile);
+    //_____________________________________________________________________________________________
+    void spawnSuperBall(const int positionX, const int positionY);
+    //_____________________________________________________________________________________________
 
     void spawnPlayer(const int positionX, const int positionY);
     void spawnEnemy(GameTexture texture, AIType type, const int positionX, const int positionY);
@@ -113,6 +116,7 @@ private:
     void updatePlayerCollision();
     void updateEnemiesCollision();
     void updateBangsCollision();
+    void updateSuperBallCollision();
     bool isCollisionDetected(const SDL_Rect& rect1, const SDL_Rect& rect2) const;
     // destroy brick
     void destroyBrick(std::shared_ptr<GameGraphicObject> brick);

@@ -9,6 +9,7 @@
 #include "../Entities/WallMetal.h"
 #include "../Entities/WallStone.h"
 #include "../Entities/SoilGrass.h"
+#include "../Entities/SuperBall.h"
 #include "../Adapters/WallPacmanAdapter.h"
 #include "../Adapters/GameObjectPacman.h"
 #include "../Adapters/WallPacman.h"
@@ -253,6 +254,16 @@ void LevelScene::spawnWallPacman(const int positionX, const int positionY, Tile*
     wallPacman->setSize(scaledTileSize, scaledTileSize);
     addObject(wallPacman);
     collisions.push_back(std::make_pair(GameTile::Stone, wallPacman));
+    backgroundObjectLastNumber++;
+}
+
+void LevelScene::spawnSuperBall(const int positionX, const int positionY)
+{
+    auto superBall = std::make_shared<SuperBall>(gameManager->getAssetManager()->getTexture(GameTexture::SuperBall),
+        gameManager->getRenderer());
+    superBall->setPosition(positionX, positionY);
+    superBall->setSize(scaledTileSize, scaledTileSize);
+    addObject(superBall);
     backgroundObjectLastNumber++;
 }
 
@@ -511,6 +522,8 @@ void LevelScene::update(const unsigned int delta)
     updateEnemiesCollision();
     // update collision of bricks
     updateBangsCollision();
+    // update superball collisions
+    //updateSuperBallCollision();
     // update camera
     updateCamera();
     // update timers
@@ -892,6 +905,15 @@ void LevelScene::updateBangsCollision()
     }
 }
 
+void LevelScene::updateSuperBallCollision() 
+{
+    //for (const auto& superball : su)
+    //{
+
+    //}
+
+}
+
 bool LevelScene::isCollisionDetected(const SDL_Rect& rect1, const SDL_Rect& rect2) const
 {
     // check for collision
@@ -1013,8 +1035,12 @@ bool LevelScene::crearObjetosJuego(string _path)
                     break;
     			case '2':
                     spawnStone(fieldPositionX + x * scaledTileSize, fieldPositionY + y * scaledTileSize);
-                    //spawnWallPacman(fieldPositionX + x * scaledTileSize, fieldPositionY + y * scaledTileSize, tile);
+                    spawnWallPacman(fieldPositionX + x * scaledTileSize, fieldPositionY + y * scaledTileSize, tile);
        				break;
+                case '3':
+                    spawnGrass(fieldPositionX + x * scaledTileSize, fieldPositionY + y * scaledTileSize);
+                    spawnSuperBall(fieldPositionX + x * scaledTileSize, fieldPositionY + y * scaledTileSize);
+                    break;
     			}
                 x++;
     		}
