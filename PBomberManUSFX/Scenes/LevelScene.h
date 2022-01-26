@@ -164,6 +164,7 @@ private:
     bool isGameOver = false;
     bool isPaused = false;
     bool isWin = false;
+    bool isInvulnerable = false;
     // variables
     unsigned int gameVersion = GAMEVERSION_CLASIC;
     unsigned int score = 0;

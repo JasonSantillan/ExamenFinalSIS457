@@ -822,12 +822,12 @@ void LevelScene::updateEnemiesCollision()
             SDL_Rect playerRect = player->getRect();
             playerRect.w = static_cast<int>(playerRect.w * 0.2);
             playerRect.h = static_cast<int>(playerRect.h * 0.2);
-            if(isCollisionDetected(playerRect, enemy->getRect()))
+            if(isCollisionDetected(playerRect, enemy->getRect()) && isInvulnerable == false)
             {
                 // player killed by enemy
-                removeObject(player);
-                player = nullptr;
-                gameOver();
+                    removeObject(player);
+                    player = nullptr;
+                    gameOver();
             }
         }
         if(player != nullptr)
@@ -896,11 +896,11 @@ void LevelScene::updateBangsCollision()
             SDL_Rect playerRect = player->getRect();
             playerRect.w = static_cast<int>(playerRect.w * 0.2f);
             playerRect.h = static_cast<int>(playerRect.h * 0.2f);
-            if(isCollisionDetected(playerRect, bang->getRect()))
+            if(isCollisionDetected(playerRect, bang->getRect()) && isInvulnerable == false)
             {
-                removeObject(player);
-                player = nullptr;
-                gameOver();
+                    removeObject(player);
+                    player = nullptr;
+                    gameOver();
             }
         }
     }
@@ -919,6 +919,7 @@ void LevelScene::updateSuperBallCollision()
             if (isCollisionDetected(playerRect, superball->getRect()))
             {
                 removeObject(superball);
+                isInvulnerable = true;
                 //player = nullptr;
                 //gameOver();
             }
