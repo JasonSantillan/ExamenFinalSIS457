@@ -20,6 +20,11 @@
 #include "../Scenes/StageScene.h"
 #include "../Util/Pathfinding.h"
 
+#include <thread>
+#include <chrono>
+using namespace std::this_thread;
+using namespace std::chrono;
+
 LevelScene::LevelScene(GameManager* _gameManager, const unsigned int _stage, const unsigned int prevScore)
     : Scene(_gameManager), score(prevScore), stage(_stage)
 {
@@ -804,8 +809,8 @@ void LevelScene::updateEnemiesCollision()
             if(isCollisionDetected(enemy->getRect(), collisionObject.second->getRect()))
             {
                 // stop moving on collision detection
-                enemy->setMoving(false);
-                enemy->revertLastMove();
+                    enemy->setMoving(false);
+                    enemy->revertLastMove();
             }
         }
         // check for bomb collision
@@ -896,7 +901,7 @@ void LevelScene::updateBangsCollision()
             SDL_Rect playerRect = player->getRect();
             playerRect.w = static_cast<int>(playerRect.w * 0.2f);
             playerRect.h = static_cast<int>(playerRect.h * 0.2f);
-            if(isCollisionDetected(playerRect, bang->getRect()) && isInvulnerable == false)
+            if(isCollisionDetected(playerRect, bang->getRect()))
             {
                     removeObject(player);
                     player = nullptr;
@@ -906,7 +911,7 @@ void LevelScene::updateBangsCollision()
     }
 }
 
-void LevelScene::updateSuperBallCollision() 
+void LevelScene::updateSuperBallCollision()
 {
     for (const auto& superball : superBalls)
     {
@@ -920,9 +925,18 @@ void LevelScene::updateSuperBallCollision()
             {
                 removeObject(superball);
                 isInvulnerable = true;
-                //player = nullptr;
-                //gameOver();
+                auxiliar = levelTimer;
             }
+            if (auxiliar - 5000 >= levelTimer) {
+                isInvulnerable = false;
+            }
+            if (isInvulnerable == true) {
+                cout << "ES INVULNERABLE" << endl;
+            }
+            if (isInvulnerable == false) {
+                cout << "ya no" << endl;
+            }
+            
         }
     }
 
