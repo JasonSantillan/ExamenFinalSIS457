@@ -20,10 +20,6 @@
 #include "../Scenes/StageScene.h"
 #include "../Util/Pathfinding.h"
 
-#include <thread>
-#include <chrono>
-using namespace std::this_thread;
-using namespace std::chrono;
 
 LevelScene::LevelScene(GameManager* _gameManager, const unsigned int _stage, const unsigned int prevScore)
     : Scene(_gameManager), score(prevScore), stage(_stage)
@@ -931,10 +927,10 @@ void LevelScene::updateSuperBallCollision()
                 isInvulnerable = false;
             }
             if (isInvulnerable == true) {
-                cout << "ES INVULNERABLE" << endl;
+                cout << "ES INVULNERABLE!!!" << endl;
             }
             if (isInvulnerable == false) {
-                cout << "ya no" << endl;
+                cout << "____" << endl;
             }
             
         }
