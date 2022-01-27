@@ -270,13 +270,11 @@ void LevelScene::spawnSuperBall(const int positionX, const int positionY)
     //backgroundObjectLastNumber++;
 
     GameActor* superBall = new SuperBallDecoratorWall(gameManager->getAssetManager()->getTexture(GameTexture::SuperBall), gameManager->getRenderer(), new SoilGrass(gameManager->getAssetManager()->getTexture(GameTexture::Grass), gameManager->getRenderer()));
-    //auto stone = std::make_shared<WallStone>(gameManager->getAssetManager()->getTexture(GameTexture::Stone), gameManager->getRenderer());
     superBall->setPosition(positionX, positionY);
     superBall->setSize(scaledTileSize, scaledTileSize);
     std::shared_ptr<GameActor> temp(superBall);
     superBalls.push_back(temp);
     addObject(temp);
-    //collisions.push_back(std::make_pair(GameTile::Stone, temp));
     backgroundObjectLastNumber++;
 }
 
@@ -1073,7 +1071,7 @@ bool LevelScene::crearObjetosJuego(string _path)
                     spawnWallPacman(fieldPositionX + x * scaledTileSize, fieldPositionY + y * scaledTileSize, tile);
        				break;
                 case '3':
-                    spawnGrass(fieldPositionX + x * scaledTileSize, fieldPositionY + y * scaledTileSize);
+                    //spawnGrass(fieldPositionX + x * scaledTileSize, fieldPositionY + y * scaledTileSize);
                     spawnSuperBall(fieldPositionX + x * scaledTileSize, fieldPositionY + y * scaledTileSize);
                     break;
     			}

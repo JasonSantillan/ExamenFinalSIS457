@@ -148,7 +148,9 @@ private:
     std::vector<std::shared_ptr<Enemy>> enemies;                      // enemies
     std::vector<std::pair<GameTile, std::shared_ptr<GameGraphicObject>>> collisions; // collisions
     std::vector<std::shared_ptr<GameGraphicObject>> bangs;                       // bomb's bang
-    std::vector<std::shared_ptr<GameActor>> superBalls;                       // bomb's bang
+    //_____________________________________________________________________________________________________________
+    std::vector<std::shared_ptr<GameActor>> superBalls;         
+    //_____________________________________________________________________________________________________________
     GameTile tiles[tileArrayHeight][tileArrayWidth];                      // tilemap
 
 
@@ -164,8 +166,10 @@ private:
     bool isGameOver = false;
     bool isPaused = false;
     bool isWin = false;
+    //_____________________________________________________________________________________________________________
     bool isInvulnerable = false;
     int auxiliar = 0;
+    //_____________________________________________________________________________________________________________
     // variables
     unsigned int gameVersion = GAMEVERSION_CLASIC;
     unsigned int score = 0;
