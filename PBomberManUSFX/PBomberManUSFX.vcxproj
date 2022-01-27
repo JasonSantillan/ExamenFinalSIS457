@@ -192,6 +192,7 @@
     <ClCompile Include="Entities\SoilGrass.cpp" />
     <ClCompile Include="Decorator\ShineDecoratorWall.cpp" />
     <ClCompile Include="Entities\SuperBall.cpp" />
+    <ClCompile Include="SuperBallDecoratorWall.cpp" />
     <ClCompile Include="system\KeyboardInput.cpp" />
     <ClCompile Include="Util\Pathfinding.cpp" />
     <ClCompile Include="Entities\Wall.cpp" />
@@ -253,6 +254,7 @@
     <ClInclude Include="Entities\SoilGrass.h" />
     <ClInclude Include="Decorator\ShineDecoratorWall.h" />
     <ClInclude Include="Entities\SuperBall.h" />
+    <ClInclude Include="SuperBallDecoratorWall.h" />
     <ClInclude Include="system\KeyboardInput.h" />
     <ClInclude Include="Util\Pathfinding.h" />
     <ClInclude Include="Entities\Wall.h" />

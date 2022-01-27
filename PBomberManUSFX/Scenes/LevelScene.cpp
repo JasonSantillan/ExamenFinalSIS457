@@ -19,6 +19,7 @@
 #include "../Scenes/LevelScene.h"
 #include "../Scenes/StageScene.h"
 #include "../Util/Pathfinding.h"
+#include "../SuperBallDecoratorWall.h"
 
 
 LevelScene::LevelScene(GameManager* _gameManager, const unsigned int _stage, const unsigned int prevScore)
@@ -243,7 +244,7 @@ void LevelScene::spawnStone(const int positionX, const int positionY)
     stone->setSize(scaledTileSize, scaledTileSize);
     std::shared_ptr<GameActor> temp(stone);
     addObject(temp);
-    collisions.push_back(std::make_pair(GameTile::Stone, temp));
+    //collisions.push_back(std::make_pair(GameTile::Stone, temp));
     backgroundObjectLastNumber++;
 }
 
@@ -260,12 +261,22 @@ void LevelScene::spawnWallPacman(const int positionX, const int positionY, Tile*
 
 void LevelScene::spawnSuperBall(const int positionX, const int positionY)
 {
-    auto superBall = std::make_shared<SuperBall>(gameManager->getAssetManager()->getTexture(GameTexture::SuperBall),
-        gameManager->getRenderer());
+    //auto superBall = std::make_shared<SuperBall>(gameManager->getAssetManager()->getTexture(GameTexture::SuperBall),
+    //    gameManager->getRenderer());
+    //superBall->setPosition(positionX, positionY);
+    //superBall->setSize(scaledTileSize, scaledTileSize);
+    //superBalls.push_back(superBall);
+    //addObject(superBall);
+    //backgroundObjectLastNumber++;
+
+    GameActor* superBall = new SuperBallDecoratorWall(gameManager->getAssetManager()->getTexture(GameTexture::SuperBall), gameManager->getRenderer(), new SoilGrass(gameManager->getAssetManager()->getTexture(GameTexture::Grass), gameManager->getRenderer()));
+    //auto stone = std::make_shared<WallStone>(gameManager->getAssetManager()->getTexture(GameTexture::Stone), gameManager->getRenderer());
     superBall->setPosition(positionX, positionY);
     superBall->setSize(scaledTileSize, scaledTileSize);
-    superBalls.push_back(superBall);
-    addObject(superBall);
+    std::shared_ptr<GameActor> temp(superBall);
+    superBalls.push_back(temp);
+    addObject(temp);
+    //collisions.push_back(std::make_pair(GameTile::Stone, temp));
     backgroundObjectLastNumber++;
 }
 
